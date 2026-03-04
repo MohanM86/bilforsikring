@@ -82,6 +82,30 @@ a{color:inherit;text-decoration:none}
 .ft a{display:block;font-size:13px;color:var(--g400);margin-bottom:8px}.ft a:hover{color:var(--white)}
 .ft-bot{padding-top:20px;border-top:1px solid rgba(255,255,255,.05);font-size:12px;display:flex;justify-content:space-between;align-items:center}
 .ft-bot a{display:inline;margin-left:16px}
+
+.ogrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0}
+@media(max-width:700px){.ogrid{grid-template-columns:1fr}}
+.ocard{border:1px solid var(--g100);border-radius:var(--r);padding:16px;display:block;transition:.2s}
+.ocard:hover{border-color:var(--blue);box-shadow:0 4px 16px var(--blue-5)}
+.ocard-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.ocard-top strong{font-size:14px;font-weight:700;color:var(--navy)}
+.otype{font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:var(--blue-10);color:var(--blue)}
+.ocard-addr{font-size:13px;color:var(--g600);margin-bottom:8px}
+.ocard-foot{display:flex;align-items:center;justify-content:space-between;padding-top:8px;border-top:1px solid var(--g100)}
+.ocard-phone{font-size:12px;color:var(--g400)}
+.ocard-arrow{color:var(--g200);transition:.15s}.ocard:hover .ocard-arrow{color:var(--blue)}
+
+.agent-sec{margin-top:28px;padding-top:24px;border-top:1px solid var(--g100)}
+.agent-sec h3{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.agent-note{font-size:13px;color:var(--g400);margin-bottom:14px}
+.agent-list{display:flex;flex-direction:column;gap:0}
+.arow{display:grid;grid-template-columns:1fr auto auto;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--g100);font-size:13px}
+.arow:last-child{border:none}
+.arow strong{font-size:13px;font-weight:600;color:var(--navy)}
+.atype{font-size:10px;color:var(--g400);margin-left:8px}
+.afor{font-size:12px;color:var(--blue);font-weight:500;white-space:nowrap}
+.aaddr{font-size:12px;color:var(--g400);white-space:nowrap}
+@media(max-width:700px){.arow{grid-template-columns:1fr;gap:4px}.afor,.aaddr{white-space:normal}}
 </style>
 </head>
 <body>
@@ -127,6 +151,45 @@ a{color:inherit;text-decoration:none}
 <section class="sec alt"><div class="w">
   <h2>Tips for å spare på bilforsikring i Trondheim</h2>
   <div class="tips"><div class="tip"><h4>Vinterdekk-sesongen er lang</h4><p>Trondheim har lang vinter — god kaskodekning er viktig for is- og snørelaterte skader.</p></div><div class="tip"><h4>Unge sjåfører: sjekk startbonus</h4><p>Som studentby finnes mange tilbud rettet mot unge sjåfører med gode startbonuser.</p></div><div class="tip"><h4>SpareBank 1 SMN</h4><p>Den lokale storbanken tilbyr Fremtind-forsikring med gode samlerabatter for trøndere.</p></div><div class="tip"><h4>Veihjelp i vinterhalvåret</h4><p>Med kalde vintre og bratte bakker er veihjelp-dekning ekstra viktig i Trondheim.</p></div></div>
+</div></section>
+
+<section class="sec alt"><div class="w">
+  <h2>Forsikringskontorer i Trondheim</h2>
+  <p>Disse forsikringsselskapene har lokal tilstedeværelse i Trondheim med egne kontorer, filialer eller bankpartnere der du kan få personlig rådgivning.</p>
+  <div class="ogrid"><a href="/forsikringsselskaper/gjensidige" class="ocard">
+<div class="ocard-top"><strong>Gjensidige</strong><span class="otype">Regionskontor</span></div>
+<div class="ocard-addr">Dyre Halses gate 1</div>
+<div class="ocard-foot"><span class="ocard-phone">915 03100</span><span class="ocard-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+</a><a href="/forsikringsselskaper/if" class="ocard">
+<div class="ocard-top"><strong>If Skadeforsikring</strong><span class="otype">Kontor</span></div>
+<div class="ocard-addr">Brattørkaia 15A</div>
+<div class="ocard-foot"><span class="ocard-phone">915 04800</span><span class="ocard-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+</a><a href="/forsikringsselskaper/fremtind" class="ocard">
+<div class="ocard-top"><strong>SpareBank 1 SMN (Fremtind)</strong><span class="otype">Bankkontor</span></div>
+<div class="ocard-addr">Søndre gate 4</div>
+<div class="ocard-foot"><span class="ocard-phone">915 07000</span><span class="ocard-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+</a><a href="/forsikringsselskaper/tryg" class="ocard">
+<div class="ocard-top"><strong>Tryg Forsikring</strong><span class="otype">Kontor</span></div>
+<div class="ocard-addr">Tungasletta 2</div>
+<div class="ocard-foot"><span class="ocard-phone">04040</span><span class="ocard-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+</a><a href="/forsikringsselskaper/storebrand" class="ocard">
+<div class="ocard-top"><strong>Storebrand</strong><span class="otype">Kontor</span></div>
+<div class="ocard-addr">Fjordgata 68</div>
+<div class="ocard-foot"><span class="ocard-phone">915 08880</span><span class="ocard-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+</a></div>
+  <div class="agent-sec">
+<h3>Lokale forsikringsagenter</h3>
+<p class="agent-note">Agenter registrert hos Finanstilsynet som formidler forsikring på vegne av forsikringsselskaper i Trondheim-regionen.</p>
+<div class="agent-list"><div class="arow">
+<div><strong>Sommerseth AS</strong><span class="atype">Bilforhandler-agent</span></div>
+<div class="afor">Agent for Tryg / Gjensidige</div>
+<div class="aaddr">Trondheim-regionen</div>
+</div><div class="arow">
+<div><strong>M Nordvik AS</strong><span class="atype">Bilforhandler-agent</span></div>
+<div class="afor">Agent for Tryg / Fremtind</div>
+<div class="aaddr">Trondheim-regionen</div>
+</div></div></div>
+  <p style="font-size:12px;color:var(--g400);margin-top:20px">Kilde: Selskapenes nettsider og Finanstilsynets virksomhetsregister. Kontaktinformasjon kan ha endret seg — sjekk selskapets nettside for oppdatert info.</p>
 </div></section>
 
 <section class="sec"><div class="w">
