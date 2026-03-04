@@ -59,6 +59,15 @@ a{color:inherit;text-decoration:none}
 .gl-cta p{font-size:14px;color:var(--g600);margin-bottom:14px}
 .gl-cta a{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;background:var(--blue);color:var(--white);border-radius:8px;font-size:14px;font-weight:600;transition:.2s}
 .gl-cta a:hover{background:var(--blue-d)}
+
+.k-strip{padding:28px 0;border-bottom:1px solid var(--g100)}
+.k-strip-title{display:block;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px}
+.k-strip-links{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px}
+.k-strip-links a{font-size:14px;color:var(--g600);font-weight:500;transition:color .15s}
+.k-strip-links a:hover{color:var(--navy)}
+.k-strip-all{color:var(--blue)!important;font-weight:600!important;display:inline-flex;align-items:center;gap:4px}
+.k-strip-all:hover{color:var(--blue-d)!important}
+.k-strip-all svg{transition:transform .15s}.k-strip-all:hover svg{transform:translateX(3px)}
 </style>
 </head>
 <body>
@@ -126,6 +135,21 @@ a{color:inherit;text-decoration:none}
     <a href="/#skjema">Sammenlign priser <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
 </div></section>
+
+<div class="k-strip"><div class="w">
+  <strong class="k-strip-title">Bilforsikring etter kommune</strong>
+  <div class="k-strip-links">
+    <a href="/oslo">Oslo</a>
+    <a href="/bergen">Bergen</a>
+    <a href="/trondheim">Trondheim</a>
+    <a href="/stavanger">Stavanger</a>
+    <a href="/kristiansand">Kristiansand</a>
+    <a href="/drammen">Drammen</a>
+    <a href="/tromso">Tromsø</a>
+    <a href="/bodo">Bodø</a>
+    <a href="/kommuner/" class="k-strip-all">Se alle kommuner <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</div></div>
 
 <footer class="ft"><div class="w">
   <div class="ft-grid">
