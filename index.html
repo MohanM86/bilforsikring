@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bilforsikring.io — Sammenlign & spar på bilforsikring</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --surface: #FFFFFF;
+    --surface-alt: #F3F2EE;
+    --ink: #1A1A1A;
+    --ink-soft: #5C5C5C;
+    --ink-muted: #999;
+    --accent: #0057FF;
+    --accent-hover: #0044CC;
+    --accent-light: #E8F0FF;
+    --green: #00A86B;
+    --green-light: #E6F7F0;
+    --orange: #FF8C00;
+    --orange-light: #FFF3E0;
+    --border: #E8E7E3;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --radius-xl: 20px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+    --shadow-xl: 0 20px 60px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,250,248,0.85);
+    backdrop-filter: blur(20px) saturate(1.4);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-weight: 800; font-size: 20px; letter-spacing: -0.5px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo .dot { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    text-decoration: none; color: var(--ink-soft); font-size: 14px; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink); color: white !important; padding: 8px 20px;
+    border-radius: 100px; font-weight: 600 !important; font-size: 13px !important;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: #333 !important; transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding: 140px 40px 80px;
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green-light); color: var(--green); font-size: 13px; font-weight: 600;
+    padding: 6px 14px; border-radius: 100px; margin-bottom: 20px;
+    animation: fadeInUp 0.6s ease both;
+  }
+  .hero-badge::before { content: '✓'; font-weight: 800; }
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(42px, 5vw, 62px);
+    line-height: 1.08; letter-spacing: -1.5px;
+    font-weight: 400; margin-bottom: 20px;
+    animation: fadeInUp 0.6s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--accent);
+    background: linear-gradient(135deg, var(--accent), #3B82F6);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-size: 18px; color: var(--ink-soft); max-width: 440px; margin-bottom: 32px;
+    animation: fadeInUp 0.6s 0.2s ease both;
+  }
+  .hero-stats {
+    display: flex; gap: 32px; margin-top: 36px;
+    animation: fadeInUp 0.6s 0.4s ease both;
+  }
+  .hero-stat-val { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+  .hero-stat-val span { color: var(--accent); }
+  .hero-stat-label { font-size: 13px; color: var(--ink-muted); font-weight: 500; }
+
+  /* ─── LEAD FORM CARD ─── */
+  .form-card {
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--border);
+    position: relative;
+    animation: fadeInUp 0.7s 0.2s ease both;
+  }
+  .form-card::before {
+    content: '';
+    position: absolute; top: -1px; left: 40px; right: 40px; height: 3px;
+    background: linear-gradient(90deg, var(--accent), #3B82F6, var(--green));
+    border-radius: 0 0 4px 4px;
+  }
+  .form-card h2 {
+    font-size: 22px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.3px;
+  }
+  .form-card .form-sub {
+    font-size: 14px; color: var(--ink-soft); margin-bottom: 28px;
+  }
+
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block; font-size: 13px; font-weight: 600; color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .form-group input, .form-group select {
+    width: 100%; padding: 13px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: inherit; font-size: 15px;
+    background: var(--bg);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus, .form-group select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-light);
+  }
+  .form-group input::placeholder { color: var(--ink-muted); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .form-submit {
+    width: 100%; padding: 16px;
+    background: var(--accent); color: white;
+    border: none; border-radius: var(--radius);
+    font-family: inherit; font-size: 16px; font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    margin-top: 8px;
+    letter-spacing: -0.2px;
+  }
+  .form-submit:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,87,255,0.3);
+  }
+  .form-trust {
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    margin-top: 16px; font-size: 12px; color: var(--ink-muted);
+  }
+  .form-trust span { display: flex; align-items: center; gap: 4px; }
+
+  /* ─── MARQUEE ─── */
+  .marquee-section {
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .marquee-label {
+    text-align: center; font-size: 12px; color: var(--ink-muted);
+    text-transform: uppercase; letter-spacing: 2px; font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .marquee-track {
+    display: flex; gap: 60px; align-items: center;
+    animation: scroll 25s linear infinite;
+    width: max-content;
+  }
+  .marquee-track .brand {
+    font-size: 22px; font-weight: 700; color: var(--ink);
+    opacity: 0.2; white-space: nowrap; letter-spacing: -0.5px;
+  }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ─── HOW IT WORKS ─── */
+  .steps-section {
+    padding: 100px 40px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .section-label {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--accent); font-weight: 700; margin-bottom: 12px;
+    text-align: center;
+  }
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(32px, 4vw, 46px);
+    text-align: center; letter-spacing: -1px;
+    margin-bottom: 60px; font-weight: 400;
+  }
+
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 36px 30px;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .step-num {
+    width: 44px; height: 44px;
+    background: var(--accent-light); color: var(--accent);
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 18px; margin-bottom: 20px;
+  }
+  .step-card h3 {
+    font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px;
+  }
+  .step-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+  .step-connector {
+    position: absolute; top: 60px; right: -14px;
+    font-size: 18px; color: var(--ink-muted); z-index: 2;
+  }
+
+  /* ─── SAVINGS BANNER ─── */
+  .savings-banner {
+    margin: 0 40px;
+    background: linear-gradient(135deg, #0A1628 0%, #162544 50%, #0A1628 100%);
+    border-radius: var(--radius-xl);
+    padding: 60px 70px;
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1120px; margin-left: auto; margin-right: auto;
+    position: relative; overflow: hidden;
+  }
+  .savings-banner::before {
+    content: '';
+    position: absolute; top: -100px; right: -50px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,87,255,0.15) 0%, transparent 70%);
+  }
+  .savings-banner::after {
+    content: '';
+    position: absolute; bottom: -80px; left: 100px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(0,168,107,0.1) 0%, transparent 70%);
+  }
+  .savings-text h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 38px; color: white; font-weight: 400;
+    letter-spacing: -0.5px; margin-bottom: 8px;
+  }
+  .savings-text h2 em { color: #5B9CFF; font-style: italic; }
+  .savings-text p { color: rgba(255,255,255,0.6); font-size: 16px; max-width: 400px; }
+  .savings-amount {
+    position: relative; z-index: 1;
+    text-align: center;
+  }
+  .savings-amount .big-num {
+    font-size: 72px; font-weight: 800; color: white;
+    letter-spacing: -2px; line-height: 1;
+  }
+  .savings-amount .big-num span { color: var(--green); }
+  .savings-amount .caption {
+    font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 4px;
+  }
+
+  /* ─── BENEFITS ─── */
+  .benefits-section {
+    padding: 100px 40px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .benefits-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  }
+  .benefit-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 30px;
+    display: flex; gap: 18px; align-items: flex-start;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .benefit-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+  .benefit-icon {
+    width: 48px; height: 48px; min-width: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .benefit-icon.blue { background: var(--accent-light); }
+  .benefit-icon.green { background: var(--green-light); }
+  .benefit-icon.orange { background: var(--orange-light); }
+  .benefit-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .benefit-card p { font-size: 14px; color: var(--ink-soft); }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials-section {
+    padding: 80px 40px 100px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .testimonial-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+  }
+  .testimonial-stars { color: #FBBF24; font-size: 16px; margin-bottom: 12px; letter-spacing: 2px; }
+  .testimonial-text { font-size: 15px; color: var(--ink); line-height: 1.6; margin-bottom: 16px; }
+  .testimonial-author { display: flex; align-items: center; gap: 10px; }
+  .testimonial-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--surface-alt); display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px; color: var(--ink-soft);
+  }
+  .testimonial-name { font-size: 14px; font-weight: 600; }
+  .testimonial-loc { font-size: 12px; color: var(--ink-muted); }
+
+  /* ─── FAQ ─── */
+  .faq-section {
+    padding: 80px 40px 100px;
+    max-width: 760px; margin: 0 auto;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 22px 0;
+  }
+  .faq-q {
+    font-size: 16px; font-weight: 600; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: color 0.2s;
+  }
+  .faq-q:hover { color: var(--accent); }
+  .faq-q::after { content: '+'; font-size: 22px; color: var(--ink-muted); font-weight: 400; }
+  .faq-item.open .faq-q::after { content: '−'; }
+  .faq-a {
+    max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s;
+    font-size: 14px; color: var(--ink-soft); line-height: 1.7;
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding-top: 12px; }
+
+  /* ─── REGIONS ─── */
+  .regions { padding: 100px 0; background: var(--surface); border-top: 1px solid var(--border); }
+  .regions-intro { text-align: center; font-size: 15px; color: var(--ink-soft); max-width: 620px; margin: 0 auto 48px; line-height: 1.7; }
+  .region-fylke { margin-bottom: 36px; }
+  .region-fylke-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border-light, rgba(0,0,0,0.06)); }
+  .region-fylke-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .region-fylke-icon svg { width: 18px; height: 18px; }
+  .region-fylke-header h3 { font-size: 16px; font-weight: 700; letter-spacing: -0.2px; }
+  .region-fylke-header span { font-size: 12px; color: var(--ink-muted); font-weight: 500; margin-left: auto; }
+  .region-cities { display: flex; flex-wrap: wrap; gap: 8px; }
+  .region-city { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; background: var(--bg, #fff); border: 1px solid rgba(0,0,0,0.06); border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--ink-soft); transition: all 0.2s; text-decoration: none; }
+  .region-city:hover { background: var(--accent-light); border-color: rgba(26,92,255,0.2); color: var(--accent); transform: translateY(-1px); }
+  .region-city svg { width: 12px; height: 12px; opacity: 0; transition: opacity 0.2s; }
+  .region-city:hover svg { opacity: 1; }
+  .regions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 40px; }
+  @media (max-width: 768px) { .regions-grid { grid-template-columns: 1fr; } }
+  .region-map-banner { margin-top: 48px; background: var(--bg, #fff); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 36px; display: flex; align-items: center; gap: 28px; }
+  .region-map-icon { width: 64px; height: 64px; min-width: 64px; background: var(--accent-light); border-radius: 16px; display: flex; align-items: center; justify-content: center; }
+  .region-map-icon svg { width: 30px; height: 30px; }
+  .region-map-text h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .region-map-text p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+  .region-map-text a { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; }
+  @media (max-width: 600px) { .region-map-banner { flex-direction: column; text-align: center; } }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    padding: 80px 40px 100px;
+    text-align: center;
+    max-width: 700px; margin: 0 auto;
+  }
+  .cta-section h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(32px, 4vw, 44px);
+    letter-spacing: -1px; font-weight: 400; margin-bottom: 16px;
+  }
+  .cta-section h2 em { color: var(--accent); font-style: italic; }
+  .cta-section p { color: var(--ink-soft); font-size: 17px; margin-bottom: 32px; }
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent); color: white; padding: 16px 36px;
+    border-radius: 100px; font-weight: 700; font-size: 16px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+  .cta-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,87,255,0.3);
+  }
+  .cta-btn svg { width: 18px; height: 18px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 40px 32px;
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 40px;
+  }
+  .footer-brand .nav-logo { margin-bottom: 8px; }
+  .footer-brand p { font-size: 13px; color: var(--ink-muted); max-width: 260px; }
+  .footer-col h4 { font-size: 13px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .footer-col a { display: block; font-size: 14px; color: var(--ink-soft); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--ink); }
+  .footer-bottom {
+    width: 100%; padding-top: 24px; margin-top: 24px; border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--ink-muted); text-align: center;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .animate-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; gap: 40px; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .step-connector { display: none; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .savings-banner { flex-direction: column; text-align: center; padding: 40px 28px; gap: 32px; }
+    .savings-text p { margin: 0 auto; }
+    nav { padding: 0 20px; }
+    .nav-links { gap: 16px; }
+    footer { flex-direction: column; }
+  }
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: column; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="dot"></span> bilforsikring.io
+  </div>
+  <div class="nav-links">
+    <a href="#slik">Slik fungerer det</a>
+    <a href="#fordeler">Fordeler</a>
+    <a href="#faq">Spørsmål</a>
+    <a href="#regioner">Regioner</a>
+    <a href="#" class="nav-cta">Sammenlign nå →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-badge">Gratis & uforpliktende</div>
+    <h1>Spar tusenvis på<br><em>bilforsikringen</em> din</h1>
+    <p class="hero-sub">Sammenlign tilbud fra Norges ledende forsikringsselskaper på 30 sekunder. Helt gratis — helt uforpliktende.</p>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-val"><span>4 823</span> kr</div>
+        <div class="hero-stat-label">Gjennomsnittlig spart</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">127 000<span>+</span></div>
+        <div class="hero-stat-label">Fornøyde brukere</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">30 <span>sek</span></div>
+        <div class="hero-stat-label">Er alt du trenger</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEAD FORM -->
+  <div class="form-card">
+    <h2>Få dine tilbud nå</h2>
+    <p class="form-sub">Fyll ut skjemaet — motta tilbud fra opptil 6 selskaper</p>
+    <div class="form-group">
+      <label>Registreringsnummer</label>
+      <input type="text" placeholder="F.eks. AB 12345">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Fornavn</label>
+        <input type="text" placeholder="Ola">
+      </div>
+      <div class="form-group">
+        <label>Etternavn</label>
+        <input type="text" placeholder="Nordmann">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Fødselsdato</label>
+      <input type="text" placeholder="dd.mm.åååå">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Forsikringstype</label>
+        <select>
+          <option>Velg type</option>
+          <option>Ansvar</option>
+          <option>Delkasko</option>
+          <option>Kasko</option>
+          <option>Toppkasko</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Kjørelengde / år</label>
+        <select>
+          <option>Velg</option>
+          <option>Under 8 000 km</option>
+          <option>8 000 – 12 000 km</option>
+          <option>12 000 – 16 000 km</option>
+          <option>Over 16 000 km</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>E-post</label>
+      <input type="email" placeholder="ola@eksempel.no">
+    </div>
+    <div class="form-group">
+      <label>Mobilnummer</label>
+      <input type="tel" placeholder="400 00 000">
+    </div>
+    <button class="form-submit">Sammenlign forsikringer →</button>
+    <div class="form-trust">
+      <span>🔒 Kryptert</span>
+      <span>⚡ 30 sekunder</span>
+      <span>✓ 100 % gratis</span>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND MARQUEE -->
+<section class="marquee-section">
+  <div class="marquee-label">Vi sammenligner blant annet</div>
+  <div style="overflow:hidden">
+    <div class="marquee-track">
+      <span class="brand">If Forsikring</span>
+      <span class="brand">Gjensidige</span>
+      <span class="brand">Tryg</span>
+      <span class="brand">SpareBank 1</span>
+      <span class="brand">Fremtind</span>
+      <span class="brand">Frende</span>
+      <span class="brand">Eika Forsikring</span>
+      <span class="brand">Storebrand</span>
+      <span class="brand">KLP</span>
+      <span class="brand">Codan</span>
+      <!-- duplicate for seamless loop -->
+      <span class="brand">If Forsikring</span>
+      <span class="brand">Gjensidige</span>
+      <span class="brand">Tryg</span>
+      <span class="brand">SpareBank 1</span>
+      <span class="brand">Fremtind</span>
+      <span class="brand">Frende</span>
+      <span class="brand">Eika Forsikring</span>
+      <span class="brand">Storebrand</span>
+      <span class="brand">KLP</span>
+      <span class="brand">Codan</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="steps-section animate-in" id="slik">
+  <div class="section-label">Slik fungerer det</div>
+  <h2 class="section-title">Tre steg til lavere forsikring</h2>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h3>Fyll inn bilinfo</h3>
+      <p>Oppgi registreringsnummer, kjørelengde og ønsket dekningstype. Vi henter resten automatisk fra Statens vegvesen.</p>
+      <span class="step-connector">→</span>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h3>Motta tilbud</h3>
+      <p>Vi sender forespørselen din til opptil 6 forsikringsselskaper. Du mottar skreddersydde tilbud rett i innboksen.</p>
+      <span class="step-connector">→</span>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h3>Velg & spar</h3>
+      <p>Sammenlign pris, dekning og vilkår side om side. Velg det beste tilbudet — og begynn å spare med én gang.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SAVINGS BANNER -->
+<section class="savings-banner animate-in">
+  <div class="savings-text">
+    <h2>Nordmenn sparer <em>stort</em></h2>
+    <p>I snitt sparer våre brukere nesten 5 000 kroner per år. Penger som heller kan brukes på noe du faktisk liker.</p>
+  </div>
+  <div class="savings-amount">
+    <div class="big-num"><span>4 823</span> kr</div>
+    <div class="caption">gjennomsnittlig spart per år</div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits-section animate-in" id="fordeler">
+  <div class="section-label">Fordeler</div>
+  <h2 class="section-title">Derfor velger tusenvis oss</h2>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <div class="benefit-icon blue">⚡</div>
+      <div>
+        <h3>Ferdig på 30 sekunder</h3>
+        <p>Vi henter bildata automatisk — du trenger bare regnummer og noen få opplysninger.</p>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon green">🔒</div>
+      <div>
+        <h3>Trygt & sikkert</h3>
+        <p>Dataene dine er kryptert og deles kun med forsikringsselskaper du godkjenner.</p>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon orange">📊</div>
+      <div>
+        <h3>Opptil 6 tilbud</h3>
+        <p>Se priser fra flere selskaper side om side, uten å fylle inn samme info flere ganger.</p>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon blue">💰</div>
+      <div>
+        <h3>Helt gratis</h3>
+        <p>Tjenesten er 100 % gratis og uforpliktende. Vi tjener på provisjon — ikke på deg.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section animate-in">
+  <div class="section-label">Brukere</div>
+  <h2 class="section-title">Hva kundene våre sier</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">Sparte 6 200 kr på forsikringen min ved å bytte. Prosessen tok bokstavelig talt under ett minutt. Anbefales!</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">MH</div>
+        <div>
+          <div class="testimonial-name">Magnus H.</div>
+          <div class="testimonial-loc">Oslo</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">Visste ikke at det var så store prisforskjeller mellom selskapene. Fikk toppkasko billigere enn gammel delkasko!</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">LS</div>
+        <div>
+          <div class="testimonial-name">Linda S.</div>
+          <div class="testimonial-loc">Bergen</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">Endelig en norsk tjeneste som gjør det enkelt å sammenligne forsikring. Ingen mas, ingen bindingstid.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">EK</div>
+        <div>
+          <div class="testimonial-name">Erik K.</div>
+          <div class="testimonial-loc">Trondheim</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section animate-in" id="faq">
+  <div class="section-label">Spørsmål & svar</div>
+  <h2 class="section-title">Ofte stilte spørsmål</h2>
+
+  <div class="faq-item open">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Er tjenesten virkelig gratis?</div>
+    <div class="faq-a">Ja, 100 %. Vi tjener penger ved at forsikringsselskapene betaler oss en provisjon når du tegner forsikring gjennom oss. Det koster deg aldri noe ekstra.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Hvor mange selskaper sammenligner dere?</div>
+    <div class="faq-a">Vi samarbeider med opptil 6 av Norges ledende forsikringsselskaper. Antall tilbud du mottar kan variere basert på biltype og profil.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Binder jeg meg til noe?</div>
+    <div class="faq-a">Nei, det er helt uforpliktende. Du mottar tilbud og velger selv om du vil gå videre med noen av dem.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Hva skjer med dataene mine?</div>
+    <div class="faq-a">Dataene dine er kryptert og deles kun med forsikringsselskaper i forbindelse med tilbudsinnhenting. Vi selger aldri dataene dine til tredjeparter.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Hvor raskt får jeg tilbud?</div>
+    <div class="faq-a">De fleste mottar tilbud i løpet av minutter. Noen selskaper kan bruke opptil 24 timer for å gi deg et presist tilbud.</div>
+  </div>
+</section>
+
+<!-- REGIONER -->
+<section class="regions animate-in" id="regioner">
+  <div class="container">
+    <div class="section-eyebrow">Bilforsikring i hele Norge</div>
+    <h2 class="section-title">Finn bilforsikring der du bor</h2>
+    <p class="regions-intro">Vi hjelper nordmenn i alle fylker og byer med å finne den beste bilforsikringen. Velg ditt område for lokale priser og tilbud.</p>
+
+    <div class="regions-grid">
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:var(--accent-light)"><svg viewBox="0 0 24 24" fill="none" stroke="#1A5CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Oslo</h3><span>Hovedstaden</span>
+        </div>
+        <div class="region-cities">
+          <a href="/oslo" class="region-city">Oslo<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/oslo/grorud" class="region-city">Grorud<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/oslo/nordstrand" class="region-city">Nordstrand<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/oslo/frogner" class="region-city">Frogner<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/oslo/stovner" class="region-city">Stovner<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/oslo/bjerke" class="region-city">Bjerke<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/oslo/sagene" class="region-city">Sagene<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/oslo/alna" class="region-city">Alna<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:#e6f7f0"><svg viewBox="0 0 24 24" fill="none" stroke="#0B9E6A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Akershus</h3><span>Østlandet</span>
+        </div>
+        <div class="region-cities">
+          <a href="/lillestrom" class="region-city">Lillestrøm<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/baerum" class="region-city">Bærum<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/asker" class="region-city">Asker<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/ski" class="region-city">Ski<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/lorenskog" class="region-city">Lørenskog<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/jessheim" class="region-city">Jessheim<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/drobak" class="region-city">Drøbak<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/nes" class="region-city">Nes<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/aas" class="region-city">Ås<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:#fef3e2"><svg viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Østfold</h3><span>Østlandet</span>
+        </div>
+        <div class="region-cities">
+          <a href="/fredrikstad" class="region-city">Fredrikstad<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/sarpsborg" class="region-city">Sarpsborg<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/halden" class="region-city">Halden<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/moss" class="region-city">Moss<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/askim" class="region-city">Askim<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/mysen" class="region-city">Mysen<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:#fde8e8"><svg viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Buskerud</h3><span>Østlandet</span>
+        </div>
+        <div class="region-cities">
+          <a href="/drammen" class="region-city">Drammen<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/kongsberg" class="region-city">Kongsberg<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/honefoss" class="region-city">Hønefoss<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/hokksund" class="region-city">Hokksund<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/lier" class="region-city">Lier<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:var(--accent-light)"><svg viewBox="0 0 24 24" fill="none" stroke="#1A5CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Vestfold</h3><span>Østlandet</span>
+        </div>
+        <div class="region-cities">
+          <a href="/tonsberg" class="region-city">Tønsberg<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/sandefjord" class="region-city">Sandefjord<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/larvik" class="region-city">Larvik<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/horten" class="region-city">Horten<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/holmestrand" class="region-city">Holmestrand<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:#e6f7f0"><svg viewBox="0 0 24 24" fill="none" stroke="#0B9E6A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Telemark</h3><span>Østlandet</span>
+        </div>
+        <div class="region-cities">
+          <a href="/skien" class="region-city">Skien<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/porsgrunn" class="region-city">Porsgrunn<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/notodden" class="region-city">Notodden<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/bamble" class="region-city">Bamble<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:#fef3e2"><svg viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Agder</h3><span>Sørlandet</span>
+        </div>
+        <div class="region-cities">
+          <a href="/kristiansand" class="region-city">Kristiansand<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/arendal" class="region-city">Arendal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/grimstad" class="region-city">Grimstad<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/mandal" class="region-city">Mandal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/farsund" class="region-city">Farsund<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/flekkefjord" class="region-city">Flekkefjord<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/lillesand" class="region-city">Lillesand<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:#fde8e8"><svg viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Rogaland</h3><span>Vestlandet</span>
+        </div>
+        <div class="region-cities">
+          <a href="/stavanger" class="region-city">Stavanger<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/sandnes" class="region-city">Sandnes<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/haugesund" class="region-city">Haugesund<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/egersund" class="region-city">Egersund<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/bryne" class="region-city">Bryne<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/sola" class="region-city">Sola<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/randaberg" class="region-city">Randaberg<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:var(--accent-light)"><svg viewBox="0 0 24 24" fill="none" stroke="#1A5CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Vestland</h3><span>Vestlandet</span>
+        </div>
+        <div class="region-cities">
+          <a href="/bergen" class="region-city">Bergen<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/stord" class="region-city">Stord<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/forde" class="region-city">Førde<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/sogndal" class="region-city">Sogndal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/os" class="region-city">Os<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/askoy" class="region-city">Askøy<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/odda" class="region-city">Odda<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/voss" class="region-city">Voss<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/florø" class="region-city">Florø<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:#e6f7f0"><svg viewBox="0 0 24 24" fill="none" stroke="#0B9E6A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Møre og Romsdal</h3><span>Vestlandet</span>
+        </div>
+        <div class="region-cities">
+          <a href="/alesund" class="region-city">Ålesund<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/molde" class="region-city">Molde<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/kristiansund" class="region-city">Kristiansund<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/ulsteinvik" class="region-city">Ulsteinvik<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/orsta" class="region-city">Ørsta<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:#fef3e2"><svg viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Trøndelag</h3><span>Midt-Norge</span>
+        </div>
+        <div class="region-cities">
+          <a href="/trondheim" class="region-city">Trondheim<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/steinkjer" class="region-city">Steinkjer<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/stjordal" class="region-city">Stjørdal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/levanger" class="region-city">Levanger<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/namsos" class="region-city">Namsos<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/orkanger" class="region-city">Orkanger<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/verdal" class="region-city">Verdal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:var(--accent-light)"><svg viewBox="0 0 24 24" fill="none" stroke="#1A5CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Nordland</h3><span>Nord-Norge</span>
+        </div>
+        <div class="region-cities">
+          <a href="/bodo" class="region-city">Bodø<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/narvik" class="region-city">Narvik<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/mo-i-rana" class="region-city">Mo i Rana<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/sortland" class="region-city">Sortland<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/svolvaer" class="region-city">Svolvær<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/sandnessjoen" class="region-city">Sandnessjøen<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/bronnoysund" class="region-city">Brønnøysund<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:#e6f7f0"><svg viewBox="0 0 24 24" fill="none" stroke="#0B9E6A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Troms</h3><span>Nord-Norge</span>
+        </div>
+        <div class="region-cities">
+          <a href="/tromso" class="region-city">Tromsø<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/harstad" class="region-city">Harstad<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/finnsnes" class="region-city">Finnsnes<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/sorreisa" class="region-city">Sørreisa<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:#fde8e8"><svg viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Finnmark</h3><span>Nord-Norge</span>
+        </div>
+        <div class="region-cities">
+          <a href="/hammerfest" class="region-city">Hammerfest<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/alta" class="region-city">Alta<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/kirkenes" class="region-city">Kirkenes<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/vardo" class="region-city">Vardø<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/vadso" class="region-city">Vadsø<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="region-fylke">
+        <div class="region-fylke-header">
+          <div class="region-fylke-icon" style="background:#fef3e2"><svg viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Innlandet</h3><span>Østlandet</span>
+        </div>
+        <div class="region-cities">
+          <a href="/hamar" class="region-city">Hamar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/lillehammer" class="region-city">Lillehammer<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/gjovik" class="region-city">Gjøvik<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/elverum" class="region-city">Elverum<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/kongsvinger" class="region-city">Kongsvinger<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/brumunddal" class="region-city">Brumunddal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/tynset" class="region-city">Tynset<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/otta" class="region-city">Otta<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="region-map-banner">
+      <div class="region-map-icon">
+        <svg viewBox="0 0 32 32" fill="none" stroke="#1A5CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 6l8 3v18l-8-3V6z"/><path d="M14 9l8-3v18l-8 3V9z"/><path d="M22 6l4 3v18l-4-3V6z"/>
+          <circle cx="14" cy="16" r="2" fill="#1A5CFF" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="region-map-text">
+        <h3>Dekning i hele Norge</h3>
+        <p>Vi sammenligner bilforsikring for alle 15 fylker og over 100 byer i Norge. Uansett hvor du bor får du tilgang til de beste tilbudene fra Norges ledende forsikringsselskaper.</p>
+        <a href="#hero-form">Sammenlign forsikring for din by <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section animate-in">
+  <h2>Klar til å <em>spare</em>?</h2>
+  <p>Bli med over 127 000 nordmenn som allerede har funnet en rimeligere bilforsikring.</p>
+  <a href="#" class="cta-btn">
+    Sammenlign nå — det er gratis
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="nav-logo"><span class="dot"></span> bilforsikring.io</div>
+    <p>Norges smarteste måte å finne riktig bilforsikring. Sammenlign, velg og spar — på under ett minutt.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Tjenester</h4>
+    <a href="#">Sammenlign forsikring</a>
+    <a href="#">Kasko</a>
+    <a href="#">Delkasko</a>
+    <a href="#">Ansvarsforsikring</a>
+  </div>
+  <div class="footer-col">
+    <h4>Populære byer</h4>
+    <a href="/oslo">Bilforsikring Oslo</a>
+    <a href="/bergen">Bilforsikring Bergen</a>
+    <a href="/trondheim">Bilforsikring Trondheim</a>
+    <a href="/stavanger">Bilforsikring Stavanger</a>
+    <a href="/tromso">Bilforsikring Tromsø</a>
+    <a href="/drammen">Bilforsikring Drammen</a>
+  </div>
+  <div class="footer-col">
+    <h4>Om oss</h4>
+    <a href="#">Hvem er vi</a>
+    <a href="#">Personvern</a>
+    <a href="#">Vilkår</a>
+    <a href="#">Kontakt</a>
+  </div>
+  <div class="footer-bottom">
+    © 2026 bilforsikring.io — Alle rettigheter reservert. Org.nr: 000 000 000
+  </div>
+</footer>
+
+<!-- SCROLL ANIMATION -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
