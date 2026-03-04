@@ -4,17 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alle forsikringsselskaper i Norge – Komplett oversikt 2026 | Bilforsikring.io</title>
-<meta name="description" content="Komplett oversikt over alle forsikringsselskaper i Norge som tilbyr bilforsikring. Priser, dekninger, kundevurderinger og detaljerte gjennomganger. Oppdatert mars 2026.">
+<meta name="description" content="Komplett oversikt over alle forsikringsselskaper i Norge som tilbyr bilforsikring. Markedsandeler, EPSI-score, dekninger og detaljerte gjennomganger. Oppdatert mars 2026.">
 <link rel="canonical" href="https://bilforsikring.io/forsikringsselskaper">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0B1A2E;--navy-2:#0E2240;--blue:#1A5CFF;--blue-d:#1450E0;--blue-10:rgba(26,92,255,.1);--blue-5:rgba(26,92,255,.05);--cyan:#00D4FF;--white:#fff;--g50:#F7F8FA;--g100:#EDF0F4;--g200:#D5DAE3;--g400:#8892A4;--g600:#4F5B6E;--g800:#1E2A3A;--green:#10B981;--amber:#F59E0B;--red:#EF4444;--r:10px;--r-lg:16px}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Outfit',system-ui,sans-serif;color:var(--g800);background:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:'Outfit',system-ui,sans-serif;color:var(--g800);background:var(--white);-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 .w{max-width:1140px;margin:0 auto;padding:0 28px}
 
+/* Nav */
 .n{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;background:var(--white);border-bottom:1px solid var(--g100)}
 .n .w{display:flex;align-items:center;height:100%}
 .n-logo{font-size:17px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px;letter-spacing:-.3px}
@@ -25,6 +26,95 @@ a{color:inherit;text-decoration:none}
 .n-btn:hover{background:var(--blue-d)}
 @media(max-width:800px){.n-r a:not(.n-btn){display:none}}
 
+/* Hero */
+.hero{padding:120px 0 0;background:var(--navy)}
+.bc{font-size:13px;color:var(--g400);margin-bottom:16px}.bc a{color:var(--cyan)}.bc a:hover{text-decoration:underline}
+.hero h1{font-size:clamp(28px,3.5vw,42px);font-weight:800;color:var(--white);margin-bottom:10px;letter-spacing:-.5px;line-height:1.15}
+.hero-sub{font-size:15px;color:var(--g400);max-width:560px;line-height:1.7}
+.hero-kpis{display:flex;gap:0;margin-top:36px;border-top:1px solid rgba(255,255,255,.06)}
+.hero-kpi{flex:1;padding:24px 0;text-align:center;border-right:1px solid rgba(255,255,255,.06)}
+.hero-kpi:last-child{border:none}
+.hero-kpi b{font-size:24px;font-weight:800;color:var(--white);display:block;letter-spacing:-.5px}
+.hero-kpi small{font-size:11px;color:var(--g400);font-weight:500}
+@media(max-width:600px){.hero-kpis{flex-wrap:wrap}.hero-kpi{flex:1 1 50%}}
+
+/* Market bar */
+.mbar{padding:32px 0;background:var(--g50);border-bottom:1px solid var(--g100)}
+.mbar-row{display:flex;align-items:center;gap:20px}
+.mbar-label{font-size:11px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px}
+.mbar-track{display:flex;height:28px;border-radius:6px;overflow:hidden;flex:1}
+.mbar-seg{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--white);min-width:28px;white-space:nowrap;padding:0 6px;transition:opacity .2s}
+.mbar-seg:hover{opacity:.85}
+.mbar-legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:10px}
+.mbar-legend span{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--g600)}
+.mbar-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+
+/* Sections */
+.sec{padding:48px 0}
+.sec.alt{background:var(--g50)}
+.s-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px;gap:16px}
+.s-head-left .s-label{font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
+.s-head-left h2{font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px}
+.s-count{font-size:12px;color:var(--g400);font-weight:500;padding:4px 12px;background:var(--g100);border-radius:100px;white-space:nowrap}
+
+/* Company rows — clean table-like layout */
+.clist{display:flex;flex-direction:column;gap:0}
+.chead{display:grid;grid-template-columns:1fr 140px 100px 180px 80px;gap:12px;padding:0 0 10px;border-bottom:2px solid var(--g100)}
+.chead span{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--g400)}
+.chead .r{text-align:right}
+
+.crow{display:grid;grid-template-columns:1fr 140px 100px 180px 80px;gap:12px;align-items:center;padding:16px 0;border-bottom:1px solid var(--g100);transition:background .15s}
+.crow:hover{background:var(--blue-5);margin:0 -12px;padding:16px 12px;border-radius:8px}
+.crow:last-child{border:none}
+
+.c-main{display:flex;flex-direction:column;gap:1px}
+.c-main strong{font-size:15px;font-weight:700;color:var(--navy);letter-spacing:-.2px;transition:color .15s}
+.crow:hover .c-main strong{color:var(--blue)}
+.c-main span{font-size:11px;color:var(--g400);font-weight:400}
+
+.c-share{display:flex;align-items:center;gap:8px}
+.c-bar-wrap{flex:1;height:6px;background:var(--g100);border-radius:3px;overflow:hidden;max-width:80px}
+.c-bar{height:100%;border-radius:3px;background:var(--blue)}
+.c-pct{font-size:13px;font-weight:700;color:var(--navy);min-width:42px}
+
+.c-score{display:flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--g800)}
+.c-star{width:13px;height:13px;color:var(--amber)}
+
+.c-covers{display:flex;gap:3px;flex-wrap:wrap}
+.c-pill{padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;background:var(--g100);color:var(--g600)}
+.c-pill.top{background:rgba(16,185,129,.08);color:var(--green)}
+
+.c-arrow{text-align:right}
+.c-arrow svg{width:16px;height:16px;color:var(--g200);transition:color .15s,transform .15s}
+.crow:hover .c-arrow svg{color:var(--blue);transform:translateX(3px)}
+
+@media(max-width:900px){
+  .chead{display:none}
+  .crow{grid-template-columns:1fr auto;gap:8px}
+  .crow>:nth-child(2),.crow>:nth-child(3),.crow>:nth-child(4){display:none}
+}
+
+/* Niche grid */
+.ngrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:800px){.ngrid{grid-template-columns:1fr}}
+.ncard{border:1px solid var(--g100);border-radius:var(--r);padding:20px;transition:.2s;display:flex;flex-direction:column}
+.ncard:hover{border-color:var(--blue);box-shadow:0 4px 16px var(--blue-5)}
+.ncard h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:2px}
+.ncard .nc-sub{font-size:11px;color:var(--g400);margin-bottom:8px}
+.ncard p{font-size:12px;color:var(--g600);line-height:1.55;flex:1;margin-bottom:12px}
+.ncard-foot{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--g100)}
+.nc-link{font-size:12px;font-weight:600;color:var(--blue);display:flex;align-items:center;gap:3px}
+.nc-link svg{width:12px;height:12px}
+.nc-site{font-size:10px;color:var(--g400)}
+
+/* CTA Banner */
+.banner{background:var(--navy);padding:56px 0;text-align:center}
+.banner h2{font-size:26px;font-weight:800;color:var(--white);margin-bottom:8px;letter-spacing:-.3px}.banner h2 span{color:var(--cyan)}
+.banner p{font-size:14px;color:var(--g400);margin-bottom:22px}
+.banner a{display:inline-flex;align-items:center;gap:6px;padding:13px 32px;background:var(--blue);color:var(--white);border-radius:8px;font-weight:700;font-size:14px;transition:.2s}
+.banner a:hover{background:var(--blue-d)}
+
+/* Footer */
 .ft{background:var(--navy);padding:56px 0 28px;color:var(--g400)}
 .ft-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
 @media(max-width:768px){.ft-grid{grid-template-columns:1fr 1fr;gap:24px}}
@@ -37,45 +127,10 @@ a{color:inherit;text-decoration:none}
 .ft-bot{padding-top:20px;border-top:1px solid rgba(255,255,255,.05);font-size:12px;display:flex;justify-content:space-between;align-items:center}
 .ft-bot a{display:inline;margin-left:16px}
 @media(max-width:600px){.ft-bot{flex-direction:column;gap:8px;text-align:center}}
-
-
-.pg-hero{padding:120px 0 48px;background:var(--navy)}
-.pg-hero h1{font-size:clamp(28px,3.5vw,40px);font-weight:800;color:var(--white);margin-bottom:8px}
-.pg-hero p{font-size:16px;color:var(--g400)}
-.bc{font-size:13px;color:var(--g400);margin-bottom:16px}
-.bc a{color:var(--cyan);font-weight:500}
-.bc a:hover{text-decoration:underline}
-
-
-.ig{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:48px}
-@media(max-width:700px){.ig{grid-template-columns:1fr}}
-.ic{border:1px solid var(--g100);border-radius:var(--r-lg);padding:24px;transition:.2s;display:flex;flex-direction:column}
-.ic:hover{border-color:var(--blue);box-shadow:0 4px 20px var(--blue-5)}
-.ic-top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
-.ic-logo{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:var(--white);flex-shrink:0}
-.ic-top h3{font-size:17px;font-weight:700;color:var(--navy)}
-.ic-type{font-size:12px;color:var(--g400)}
-.ic p{font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px}
-.ic-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
-.ic-tag{padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600}
-.ic-tag.g{background:rgba(16,185,129,.1);color:var(--green)}
-.ic-tag.b{background:var(--blue-10);color:var(--blue)}
-.ic-tag.a{background:rgba(245,158,11,.1);color:var(--amber)}
-.ic-foot{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--g100)}
-.ic-link{font-size:13px;font-weight:600;color:var(--blue)}
-.ic-web{font-size:11px;color:var(--g400)}
-
-.mbar{background:var(--g50);border:1px solid var(--g100);border-radius:var(--r-lg);padding:28px;margin-bottom:36px}
-.mbar-label{font-size:11px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
-.mbar-track{display:flex;height:36px;border-radius:8px;overflow:hidden;margin-bottom:14px}
-.mbar-seg{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--white);min-width:32px;white-space:nowrap;padding:0 6px}
-.mbar-legend{display:flex;flex-wrap:wrap;gap:14px}
-.mbar-legend span{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--g600)}
-.mbar-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
-
 </style>
 </head>
 <body>
+
 <nav class="n"><div class="w">
   <a href="/" class="n-logo"><svg viewBox="0 0 26 26" fill="none"><rect x="1" y="5" width="10" height="16" rx="2.5" fill="#1A5CFF"/><path d="M14 8h7a2.5 2.5 0 012.5 2.5v5A2.5 2.5 0 0121 18h-7" stroke="#00D4FF" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="13" r="2" fill="#fff"/></svg>bilforsikring.io</a>
   <div class="n-r">
@@ -86,125 +141,241 @@ a{color:inherit;text-decoration:none}
     <a href="/#skjema" class="n-btn">Sammenlign priser</a>
   </div>
 </div></nav>
-<section class="pg-hero"><div class="w">
-<div class="breadcrumb"><a href="/">Hjem</a> / Forsikringsselskaper</div>
-<h1 class="reveal">Alle forsikringsselskaper<br>i <em>Norge</em></h1>
-<p class="header-desc">Den ultimate oversikten over norske forsikringsselskaper som tilbyr bilforsikring. Oppdatert mars 2026 med priser, dekninger, fordeler og kundevurderinger.</p>
+
+<section class="hero"><div class="w">
+  <div class="bc"><a href="/">Hjem</a> &rsaquo; Forsikringsselskaper</div>
+  <h1>22 selskaper som tilbyr<br>bilforsikring i Norge</h1>
+  <p class="hero-sub">Komplett oversikt med markedsandeler, kundetilfredshet, dekningsnivåer og uavhengige gjennomganger. Oppdatert mars 2026.</p>
+  <div class="hero-kpis">
+    <div class="hero-kpi"><b>22</b><small>Selskaper vurdert</small></div>
+    <div class="hero-kpi"><b>4 823</b><small>Sammenligninger</small></div>
+    <div class="hero-kpi"><b>75,2</b><small>Høyeste EPSI</small></div>
+    <div class="hero-kpi"><b>3 200 kr</b><small>Laveste ansvarspris</small></div>
+  </div>
 </div></section>
 
-<section class="w">
-<div class="market-bar-inner">
-<div class="mbar-label">Markedsandeler skadeforsikring Norge</div>
-<div class="mbar-track">
-<div class="mbar-seg" style="flex:26.3;background:#1A5CFF">26,3 %</div>
-<div class="mbar-seg" style="flex:21.3;background:#0B9E6A">21,3 %</div>
-<div class="mbar-seg" style="flex:14.7;background:#D97706">14,7 %</div>
-<div class="mbar-seg" style="flex:13.4;background:#DC2626">13,4 %</div>
-<div class="mbar-seg" style="flex:24.3;background:#8A8A8A">24,3 %</div>
-</div>
-<div class="mbar-legend">
-<div ><span class="mbar-dot" style="background:#1A5CFF"></span>Gjensidige</div>
-<div ><span class="mbar-dot" style="background:#0B9E6A"></span>If</div>
-<div ><span class="mbar-dot" style="background:#D97706"></span>Fremtind</div>
-<div ><span class="mbar-dot" style="background:#DC2626"></span>Tryg</div>
-<div ><span class="mbar-dot" style="background:#8A8A8A"></span>Øvrige</div>
-</div></div>
-</section>
-
-<section class="w" style="padding-top:40px">
-<div class="eyebrow">De fire store</div>
-<h2 class="stitle">Markedslederne</h2>
-<p class="ssub">Disse fire selskapene har til sammen over 75 prosent av det norske skadeforsikringsmarkedet.</p>
-<div class="ig"><a href="/forsikringsselskaper/gjensidige" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#1A5CFF">Gj</div><div ><h3>Gjensidige Forsikring</h3><span class="ic-type">Norges største skadeforsikringsselskap</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">Norges desidert største forsikringsselskap med 26,3 prosent markedsandel. Tilbyr fire nivåer av bilforsikring med 8 års reparasjonsgaranti og årlig kundeutbytte.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span><span class="ic-tag g">26,3 % andel</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">gjensidige.no</span></div></a><a href="/forsikringsselskaper/if" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#0B9E6A">If</div><div ><h3>If Skadeforsikring</h3><span class="ic-type">Skandinavias største skadeforsikrer</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">Nordens ledende skadeforsikringsselskap med 21,3 prosent markedsandel i Norge. Kjent for raske skadeoppgjør, sterke digitale verktøy og et bredt spekter av bilforsikringer.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span><span class="ic-tag g">21,3 % andel</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">if.no</span></div></a><a href="/forsikringsselskaper/fremtind" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#D97706">Fr</div><div ><h3>Fremtind Forsikring</h3><span class="ic-type">SpareBank 1, DNB og Eika</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">Norges tredje største forsikringsselskap, dannet av SpareBank 1 og DNB. Vokser raskt etter oppkjøpet av Eika Forsikring og satser sterkt på digitale løsninger.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span><span class="ic-tag g">14,7 % andel</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">fremtind.no</span></div></a><a href="/forsikringsselskaper/tryg" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#DC2626">Tr</div><div ><h3>Tryg Forsikring</h3><span class="ic-type">Dansk-norsk forsikringskonsern</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">Et av verdens eldste forsikringsselskaper med 13,4 prosent markedsandel. Eier Enter Forsikring og er sterke på nybiler gjennom merkeavtaler med Tesla.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span><span class="ic-tag g">13,4 % andel</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">tryg.no</span></div></a><a href="/forsikringsselskaper/enter" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#EF4444">En</div><div ><h3>Enter Forsikring</h3><span class="ic-type">Bilforsikring via forhandlere (Tryg)</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">Datterselskap av Tryg, spesialisert på bilforsikring via bilforhandlere. Safety/Elbil Safety med 60 dager leiebil, maskinskade til 200 000 km, parkeringsbulk og merkeverksted med originaldeler.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">enter-forsikring.no</span></div></a><a href="/forsikringsselskaper/jbf" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#3B82F6">JB</div><div ><h3>JBF Forsikring</h3><span class="ic-type">Jernbanefamilien</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">Gjensidig eid forsikringsselskap med over 130 års historie. Landets mest fornøyde forsikringskunder ifølge EPSI 2024. Superkasko med maskinskade for biler opptil 15 år.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">jbf.no</span></div></a><a href="/forsikringsselskaper/knif" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#8B5CF6">Kn</div><div ><h3>Knif Trygghet Forsikring</h3><span class="ic-type">Ideell forsikring</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">Forsikring for kristne organisasjoner og deres medlemmer. Eid av 54 trossamfunn. Overskudd tilbake til fellesskapet. Strategisk partnerskap med Storebrand.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">kniftrygghet.no</span></div></a><a href="/forsikringsselskaper/watercircles" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#6D28D9">Wc</div><div ><h3>WaterCircles Forsikring</h3><span class="ic-type">Eksklusiv forsikring</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">Selektivt forsikringsselskap som velger ut ansvarlige kunder. Best på servicekvalitet i EPSI 2023, 2024 og 2025. Elite-dekning med 45 dager leiebil og 40 000 kr parkeringsskade.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">watercircles.no</span></div></a><a href="/forsikringsselskaper/coverme" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#EC4899">CM</div><div ><h3>CoverMe</h3><span class="ic-type">Kun bilforsikring</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">100 prosent digital bilforsikring fra 2010. Kun bil. Elbil-spesialist med Tesla-samarbeid. Forsikringsagent for Eir via Digisure/Nord Insuretech Group.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">coverme.no</span></div></a><a href="/forsikringsselskaper/storm" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#14B8A6">Sm</div><div ><h3>Storm Forsikring</h3><span class="ic-type">Forsikringsformidler</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">Ny forsikringsformidler fra Tønsberg (stiftet 2025). Personlig rådgiver, Bil Super med maskinskade til 250 000 km, 45 dager leiebil og parkeringsbulk 40 000 kr.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">stormforsikring.no</span></div></a><a href="/forsikringsselskaper/balder" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#7C3AED">Ba</div><div ><h3>Balder Forsikring</h3><span class="ic-type">Forsikringsformidler</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">Forsikringsformidler fra Asker med Pensjonistforbundet-avtale. Bil Super med maskinskade til 250 000 km, 45 dager leiebil, nybilgaranti ved 60 % og Balder Sikkerhet.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">balderforsikring.no</span></div></a></div>
-
-<div class="eyebrow">Mellomstore selskaper</div>
-<h2 class="stitle">Populære alternativer</h2>
-<p class="ssub">Selskaper som utfordrer de store på pris, dekning eller kundetilfredshet.</p>
-<div class="ig"><a href="/forsikringsselskaper/storebrand" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#6366F1">St</div><div ><h3>Storebrand Forsikring</h3><span class="ic-type">Nordens ledende på bærekraft</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">Nordisk finans- og forsikringskonsern med Norges høyest rangerte bilforsikring på dekning (Super). Sterk på bærekraft og ansvarlige investeringer.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span><span class="ic-tag g">~5 % andel</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">storebrand.no</span></div></a><a href="/forsikringsselskaper/frende" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#059669">Fe</div><div ><h3>Frende Forsikring</h3><span class="ic-type">Vestlandets forsikringsselskap</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">Kåret til Norges beste forsikringsselskap i 2025. Fokuserer på kvalitet og kundeopplevelse med innovative fordeler som gratis legetjeneste og bærekraftige løsninger.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span><span class="ic-tag g">~4 % andel</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">frende.no</span></div></a><a href="/forsikringsselskaper/klp" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#0369A1">KL</div><div ><h3>KLP Forsikring</h3><span class="ic-type">Norges største livsforsikringsselskap</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">Norges største livsforsikringsselskap med svært høy kundetilfredshet (73,5 EPSI). Gode vilkår for ansatte i offentlig sektor, men åpent for alle.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span><span class="ic-tag g">~3 % andel</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">klp.no</span></div></a><a href="/forsikringsselskaper/eika" class="icard">
-<div class="ic-top"><div class="ic-logo" style="background:#7C3AED">Ei</div><div ><h3>Eika Forsikring</h3><span class="ic-type">Lokalbankenes forsikringsselskap</span></div></div>
-<p style="font-size:13px;color:var(--g600);line-height:1.65;flex:1;margin-bottom:14px">Norges sjette største forsikringsselskap med sterk lokal tilstedeværelse gjennom 50+ lokalbanker. Under integrasjon med Fremtind etter oppkjøp.</p>
-<div class="ic-tags"><span class="ic-tag b">Bilforsikring</span><span class="ic-tag g">~4 % andel</span></div>
-<div class="ic-foot"><span class="ic-link">Les full gjennomgang &rarr;</span><span class="ic-web">eika.no</span></div></a></div>
-
-<div class="eyebrow">Nisjeaktører</div>
-<h2 class="stitle">Andre selskaper med bilforsikring</h2>
-<p class="ssub">Spesialiserte aktører med tilbud for ulike kundegrupper.</p>
-<div class="ig" style="grid-template-columns:repeat(3,1fr)"><a href="/forsikringsselskaper/landkreditt" class="scard">
-<div class="ic-logo sm" style="background:#059669">Lk</div>
-<div><h4>Landkreditt Forsikring</h4><p>Spesialisert på landbruk med gode medlemsrabatter gjennom Norges Bondelag. Score 3,9/5....</p></div></a><a href="/forsikringsselskaper/nordea" class="scard">
-<div class="ic-logo sm" style="background:#0369A1">No</div>
-<div><h4>Nordea Forsikring</h4><p>Forsikring gjennom samarbeid med Gjensidige. Gode samlerabatter for Nordea-bankkunder....</p></div></a><a href="/forsikringsselskaper/sumit" class="scard">
-<div class="ic-logo sm" style="background:#D97706">Su</div>
-<div><h4>Sum-it Forsikring</h4><p>Topper Bytt.no med 4,5 av 5 (mars 2026). Kjent for rask svartid og vennlig service....</p></div></a><a href="/forsikringsselskaper/naf" class="scard">
-<div class="ic-logo sm" style="background:#CA8A04">NA</div>
-<div><h4>NAF Forsikring</h4><p>Bilforsikring med opptil 22 prosent rabatt for NAF-medlemmer. Dekker alle kjøretøytyper....</p></div></a><a href="/forsikringsselskaper/protector" class="scard">
-<div class="ic-logo sm" style="background:#475569">Pr</div>
-<div><h4>Protector Forsikring</h4><p>Spesialisert på bedriftsforsikring, flåteavtaler og kommuneforsikring....</p></div></a><a href="/forsikringsselskaper/norskesjo" class="scard">
-<div class="ic-logo sm" style="background:#0891B2">NS</div>
-<div><h4>Norske Sjø KNBF</h4><p>Kongelig Norsk Båtforbunds forsikring. Primært båt, men tilbyr også bilforsikring....</p></div></a></div>
-</section>
-
-<section class="w"><div class="cta-banner">
-<h2>Sammenlign alle selskapene <em>på ett sted</em></h2>
-<p>Få tilbud fra opptil 6 selskaper på 30 sekunder. Helt gratis og uforpliktende.</p>
-<a href="/#skjema" class="cbtn">Sammenlign nå &rarr;</a>
+<section class="mbar"><div class="w">
+  <div class="mbar-label">Markedsandeler skadeforsikring 2025</div>
+  <div class="mbar-track">
+    <div class="mbar-seg" style="flex:26.3;background:#1A5CFF">26,3 %</div>
+    <div class="mbar-seg" style="flex:21.3;background:#10B981">21,3 %</div>
+    <div class="mbar-seg" style="flex:14.7;background:#F59E0B">14,7 %</div>
+    <div class="mbar-seg" style="flex:13.4;background:#EF4444">13,4 %</div>
+    <div class="mbar-seg" style="flex:24.3;background:var(--g400)">24,3 %</div>
+  </div>
+  <div class="mbar-legend">
+    <span><span class="mbar-dot" style="background:#1A5CFF"></span>Gjensidige</span>
+    <span><span class="mbar-dot" style="background:#10B981"></span>If</span>
+    <span><span class="mbar-dot" style="background:#F59E0B"></span>Fremtind</span>
+    <span><span class="mbar-dot" style="background:#EF4444"></span>Tryg</span>
+    <span><span class="mbar-dot" style="background:var(--g400)"></span>Øvrige</span>
+  </div>
 </div></section>
+
+<!-- MARKEDSLEDERNE -->
+<section class="sec"><div class="w">
+  <div class="s-head">
+    <div class="s-head-left"><div class="s-label">Markedslederne</div><h2>De største selskapene</h2></div>
+    <span class="s-count">8 selskaper</span>
+  </div>
+
+  <div class="clist">
+    <div class="chead">
+      <span>Selskap</span><span>Andel</span><span>EPSI</span><span>Topp-dekning</span><span class="r"></span>
+    </div>
+
+    <a href="/forsikringsselskaper/gjensidige" class="crow">
+      <div class="c-main"><strong>Gjensidige Forsikring</strong><span>Norges største &middot; Grunnlagt 1816</span></div>
+      <div class="c-share"><span class="c-pct">26,3 %</span><div class="c-bar-wrap"><div class="c-bar" style="width:100%"></div></div></div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>75,2</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Delkasko</span><span class="c-pill">Kasko</span><span class="c-pill top">Pluss</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="/forsikringsselskaper/if" class="crow">
+      <div class="c-main"><strong>If Skadeforsikring</strong><span>Skandinavias største &middot; Grunnlagt 1999</span></div>
+      <div class="c-share"><span class="c-pct">21,3 %</span><div class="c-bar-wrap"><div class="c-bar" style="width:81%"></div></div></div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>71,5</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Delkasko</span><span class="c-pill">Kasko</span><span class="c-pill top">Topp</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="/forsikringsselskaper/fremtind" class="crow">
+      <div class="c-main"><strong>Fremtind Forsikring</strong><span>SpareBank 1 + DNB &middot; Grunnlagt 2019</span></div>
+      <div class="c-share"><span class="c-pct">14,7 %</span><div class="c-bar-wrap"><div class="c-bar" style="width:56%"></div></div></div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>70,8</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Delkasko</span><span class="c-pill">Kasko</span><span class="c-pill top">Pluss</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="/forsikringsselskaper/tryg" class="crow">
+      <div class="c-main"><strong>Tryg Forsikring</strong><span>Dansk-norsk konsern &middot; Grunnlagt 1731</span></div>
+      <div class="c-share"><span class="c-pct">13,4 %</span><div class="c-bar-wrap"><div class="c-bar" style="width:51%"></div></div></div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>71,8</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Delkasko</span><span class="c-pill">Kasko</span><span class="c-pill top">Bil Ekstra</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="/forsikringsselskaper/storebrand" class="crow">
+      <div class="c-main"><strong>Storebrand Forsikring</strong><span>Bærekraftsleder &middot; Grunnlagt 1767</span></div>
+      <div class="c-share"><span class="c-pct">~5 %</span><div class="c-bar-wrap"><div class="c-bar" style="width:19%"></div></div></div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>72,1</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Delkasko</span><span class="c-pill">Kasko</span><span class="c-pill top">Super</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="/forsikringsselskaper/frende" class="crow">
+      <div class="c-main"><strong>Frende Forsikring</strong><span>Vestlandets selskap &middot; Grunnlagt 2007</span></div>
+      <div class="c-share"><span class="c-pct">~4 %</span><div class="c-bar-wrap"><div class="c-bar" style="width:15%"></div></div></div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>73,8</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Delkasko</span><span class="c-pill">Kasko</span><span class="c-pill top">Topp</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="/forsikringsselskaper/eika" class="crow">
+      <div class="c-main"><strong>Eika Forsikring</strong><span>120+ lokalbanker &middot; Del av Fremtind</span></div>
+      <div class="c-share"><span class="c-pct">~4 %</span><div class="c-bar-wrap"><div class="c-bar" style="width:15%"></div></div></div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>71,5</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Delkasko</span><span class="c-pill">Kasko</span><span class="c-pill top">Kasko Pluss</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="/forsikringsselskaper/klp" class="crow">
+      <div class="c-main"><strong>KLP Forsikring</strong><span>Offentlig sektor &middot; Grunnlagt 1949</span></div>
+      <div class="c-share"><span class="c-pct">~3 %</span><div class="c-bar-wrap"><div class="c-bar" style="width:11%"></div></div></div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>73,5</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Delkasko</span><span class="c-pill">Kasko</span><span class="c-pill top">Toppkasko</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+  </div>
+</div></section>
+
+<!-- SPESIALISTER OG UTFORDRERE -->
+<section class="sec alt"><div class="w">
+  <div class="s-head">
+    <div class="s-head-left"><div class="s-label">Spesialister &amp; utfordrere</div><h2>Utfordrerne</h2></div>
+    <span class="s-count">8 selskaper</span>
+  </div>
+
+  <div class="clist">
+    <div class="chead">
+      <span>Selskap</span><span>Segment</span><span>Score</span><span>Topp-dekning</span><span class="r"></span>
+    </div>
+
+    <a href="/forsikringsselskaper/enter" class="crow">
+      <div class="c-main"><strong>Enter Forsikring</strong><span>Datterselskap av Tryg</span></div>
+      <div style="font-size:12px;color:var(--g600)">Via bilforhandlere</div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>4.2/5</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Kasko</span><span class="c-pill top">Safety</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="/forsikringsselskaper/jbf" class="crow">
+      <div class="c-main"><strong>JBF Forsikring</strong><span>Gjensidig eid &middot; Grunnlagt 1891</span></div>
+      <div style="font-size:12px;color:var(--g600)">Jernbanefamilien</div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>EPSI #1</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Kasko</span><span class="c-pill top">Superkasko</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="/forsikringsselskaper/watercircles" class="crow">
+      <div class="c-main"><strong>WaterCircles Forsikring</strong><span>Eksklusivt selskap</span></div>
+      <div style="font-size:12px;color:var(--g600)">Selektiv opptakspolitikk</div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>Topp 3</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Kasko</span><span class="c-pill top">Elite</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="/forsikringsselskaper/knif" class="crow">
+      <div class="c-main"><strong>Knif Trygghet Forsikring</strong><span>Ideell &middot; Storebrand-partner</span></div>
+      <div style="font-size:12px;color:var(--g600)">Trossamfunn</div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>4.0/5</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Kasko</span><span class="c-pill top">Toppkasko</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="/forsikringsselskaper/coverme" class="crow">
+      <div class="c-main"><strong>CoverMe</strong><span>100 % digital &middot; Grunnlagt 2010</span></div>
+      <div style="font-size:12px;color:var(--g600)">Kun bilforsikring</div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>4.1/5</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Kasko</span><span class="c-pill top">Topp</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="/forsikringsselskaper/storm" class="crow">
+      <div class="c-main"><strong>Storm Forsikring</strong><span>Forsikringsformidler &middot; Stiftet 2025</span></div>
+      <div style="font-size:12px;color:var(--g600)">Personlig rådgiver</div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>Ny</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Kasko</span><span class="c-pill top">Bil Super</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="/forsikringsselskaper/balder" class="crow">
+      <div class="c-main"><strong>Balder Forsikring</strong><span>Pensjonistforbundet-avtale</span></div>
+      <div style="font-size:12px;color:var(--g600)">Forsikringsformidler</div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>4.3/5</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Kasko</span><span class="c-pill top">Bil Super</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="/forsikringsselskaper/sumit" class="crow">
+      <div class="c-main"><strong>Sumit Forsikring</strong><span>Heldigital agent &middot; Grunnlagt 2020</span></div>
+      <div style="font-size:12px;color:var(--g600)">Digital nisje</div>
+      <div class="c-score"><svg class="c-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>4.5/5</div>
+      <div class="c-covers"><span class="c-pill">Ansvar</span><span class="c-pill">Delkasko</span><span class="c-pill top">Kasko</span></div>
+      <div class="c-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+  </div>
+</div></section>
+
+<!-- NISJEAKTØRER -->
+<section class="sec"><div class="w">
+  <div class="s-head">
+    <div class="s-head-left"><div class="s-label">Nisjeaktører</div><h2>Spesialiserte selskaper</h2></div>
+    <span class="s-count">6 selskaper</span>
+  </div>
+
+  <div class="ngrid">
+    <a href="/forsikringsselskaper/naf" class="ncard">
+      <h4>NAF Forsikring</h4>
+      <div class="nc-sub">Norges Automobil-Forbund &middot; 600 000+ medlemmer</div>
+      <p>Dobbel veihjelp (forsikring + medlemskap) og opptil 15 % medlemsrabatt på bilforsikring. Sterk på elbil.</p>
+      <div class="ncard-foot"><span class="nc-link">Les gjennomgang <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span class="nc-site">naf.no</span></div>
+    </a>
+    <a href="/forsikringsselskaper/nordea" class="ncard">
+      <h4>Nordea Forsikring</h4>
+      <div class="nc-sub">Nordens største bank</div>
+      <p>Opptil 20 % totalkunderabatt når du samler bank, lån og forsikring. Alt administrert i Nordea-appen.</p>
+      <div class="ncard-foot"><span class="nc-link">Les gjennomgang <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span class="nc-site">nordea.no</span></div>
+    </a>
+    <a href="/forsikringsselskaper/landkreditt" class="ncard">
+      <h4>Landkreditt Forsikring</h4>
+      <div class="nc-sub">Landbrukets forsikringsselskap</div>
+      <p>Samlerabatt med gårdsforsikring og maskin. Medlemsrabatt gjennom Norges Bondelag og Småbrukarlaget.</p>
+      <div class="ncard-foot"><span class="nc-link">Les gjennomgang <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span class="nc-site">landkreditt.no</span></div>
+    </a>
+    <a href="/forsikringsselskaper/norskesjo" class="ncard">
+      <h4>Norske Sjø Forsikring</h4>
+      <div class="nc-sub">Gjensidig &middot; Grunnlagt 1918</div>
+      <p>Sterk på kombinert båt- og bilforsikring. Gjensidig selskap der overskudd går tilbake til kundene.</p>
+      <div class="ncard-foot"><span class="nc-link">Les gjennomgang <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span class="nc-site">norskesjo.no</span></div>
+    </a>
+    <a href="/forsikringsselskaper/protector" class="ncard">
+      <h4>Protector Forsikring</h4>
+      <div class="nc-sub">Børsnotert &middot; Kun bedrift</div>
+      <p>Flåteforsikring via forsikringsmegler for bedrifter med 5+ biler. Nordisk dekning i 5 land.</p>
+      <div class="ncard-foot"><span class="nc-link">Les gjennomgang <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span class="nc-site">protectorforsikring.no</span></div>
+    </a>
+  </div>
+</div></section>
+
+<!-- BANNER -->
+<section class="banner"><div class="w">
+  <h2>Sammenlign alle selskapene <span>på ett sted</span></h2>
+  <p>Få tilbud fra opptil 6 selskaper på 30 sekunder. Helt gratis og uforpliktende.</p>
+  <a href="/#skjema">Sammenlign priser <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+</div></section>
+
 <footer class="ft"><div class="w">
   <div class="ft-grid">
     <div>
@@ -212,10 +383,11 @@ a{color:inherit;text-decoration:none}
       <p class="ft-desc">Norges mest brukte tjeneste for sammenligning av bilforsikring.</p>
     </div>
     <div><h4>Tjenester</h4><a href="/#skjema">Sammenlign</a><a href="/forsikringsselskaper/">Selskaper</a><a href="/artikler/">Artikler</a><a href="/ordliste/">Ordliste</a></div>
-    <div><h4>Populaere</h4><a href="/forsikringsselskaper/gjensidige">Gjensidige</a><a href="/forsikringsselskaper/if">If</a><a href="/forsikringsselskaper/tryg">Tryg</a><a href="/forsikringsselskaper/fremtind">Fremtind</a></div>
-    <div><h4>Om oss</h4><a href="/om">Om oss</a><a href="/personvern">Personvern</a><a href="/vilkar">Vilkar</a><a href="/kontakt">Kontakt</a></div>
+    <div><h4>Populære</h4><a href="/forsikringsselskaper/gjensidige">Gjensidige</a><a href="/forsikringsselskaper/if">If</a><a href="/forsikringsselskaper/tryg">Tryg</a><a href="/forsikringsselskaper/fremtind">Fremtind</a></div>
+    <div><h4>Om oss</h4><a href="/om">Om oss</a><a href="/personvern">Personvern</a><a href="/vilkar">Vilkår</a><a href="/kontakt">Kontakt</a></div>
   </div>
-  <div class="ft-bot"><span>&copy; 2026 bilforsikring.io</span><div><a href="/personvern">Personvern</a><a href="/vilkar">Vilkar</a></div></div>
+  <div class="ft-bot"><span>&copy; 2026 bilforsikring.io</span><div><a href="/personvern">Personvern</a><a href="/vilkar">Vilkår</a></div></div>
 </div></footer>
+
 </body>
 </html>
