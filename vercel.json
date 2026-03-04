@@ -1,0 +1,9 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/forsikringsselskaper/:slug", "destination": "/forsikringsselskaper/:slug/index.html" },
+    { "source": "/artikler/:slug", "destination": "/artikler/:slug/index.html" },
+    { "source": "/ordliste", "destination": "/ordliste/index.html" }
+  ]
+}
