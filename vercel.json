@@ -41,6 +41,10 @@
     {
       "source": "/kommuner",
       "destination": "/kommuner/index.html"
+    },
+    {
+      "source": "/kommune/:slug",
+      "destination": "/kommune/:slug/index.html"
     }
   ]
 }
