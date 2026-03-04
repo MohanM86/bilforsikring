@@ -221,13 +221,34 @@ a{color:inherit;text-decoration:none}
 .bc-link{font-size:13px;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:4px}
 .bc-link:hover{text-decoration:underline}
 
-.ilinks{padding:48px 0;background:var(--g50);border-top:1px solid var(--g100)}
-.il-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
-@media(max-width:700px){.il-grid{grid-template-columns:1fr;gap:24px}}
-.il-col h3{font-size:13px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--blue);display:inline-block}
-.il-col a{display:block;font-size:13px;color:var(--g600);margin-bottom:8px}
-.il-col a:hover{color:var(--blue)}
-.il-col a:last-child{color:var(--blue);font-weight:600;margin-top:4px}
+.ilinks{padding:64px 0 56px;background:var(--navy);position:relative;overflow:hidden}
+.ilinks::before{content:'';position:absolute;top:-120px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(26,92,255,.12) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.ilinks::after{content:'';position:absolute;bottom:-100px;left:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(0,212,255,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.il-head{text-align:center;margin-bottom:40px;position:relative;z-index:1}
+.il-head h2{font-size:28px;font-weight:800;color:var(--white);letter-spacing:-.5px;margin-bottom:6px}
+.il-head h2 span{background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.il-head p{font-size:14px;color:rgba(255,255,255,.45);max-width:440px;margin:0 auto}
+.il-grid{display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:24px;position:relative;z-index:1}
+@media(max-width:900px){.il-grid{grid-template-columns:1fr;gap:28px}}
+.il-col{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:28px 24px}
+.il-col h3{font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.il-col h3::before{content:'';width:18px;height:2px;background:linear-gradient(90deg,var(--cyan),transparent);border-radius:2px}
+.il-col a{display:inline-flex;align-items:center;font-size:13px;color:rgba(255,255,255,.55);margin-bottom:0;padding:6px 12px;border-radius:6px;transition:all .2s;text-decoration:none}
+.il-col a:hover{color:var(--white);background:rgba(26,92,255,.15);transform:translateX(4px)}
+.il-col--cities{display:flex;flex-direction:column}
+.il-col--cities .il-tags{display:flex;flex-wrap:wrap;gap:6px}
+.il-col--cities .il-tags a{display:inline-flex;padding:7px 14px;border:1px solid rgba(255,255,255,.1);border-radius:20px;font-size:12px;font-weight:500;color:rgba(255,255,255,.6);transition:all .2s}
+.il-col--cities .il-tags a:hover{border-color:var(--blue);color:var(--white);background:rgba(26,92,255,.15);transform:translateY(-2px);box-shadow:0 4px 16px rgba(26,92,255,.2)}
+.il-col--fylke .il-tags{display:flex;flex-wrap:wrap;gap:6px}
+.il-col--fylke .il-tags a{display:inline-flex;padding:7px 14px;border:1px solid rgba(255,255,255,.08);border-radius:8px;font-size:12px;font-weight:500;color:rgba(255,255,255,.5);background:rgba(255,255,255,.03);transition:all .2s}
+.il-col--fylke .il-tags a:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,212,255,.08);transform:translateY(-2px)}
+.il-cta{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:8px 16px;background:linear-gradient(135deg,var(--blue),#4F7BFF);color:var(--white)!important;border-radius:8px;font-size:12px;font-weight:700;letter-spacing:.3px;transition:all .25s;box-shadow:0 4px 16px rgba(26,92,255,.25)}
+.il-cta:hover{transform:translateY(-2px) translateX(0)!important;box-shadow:0 8px 24px rgba(26,92,255,.35);background:linear-gradient(135deg,#4F7BFF,var(--blue))}
+.il-cta svg{width:14px;height:14px;transition:transform .2s}.il-cta:hover svg{transform:translateX(3px)}
+.il-stat{display:flex;gap:24px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
+.il-stat div{text-align:center;flex:1}
+.il-stat b{display:block;font-size:20px;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.il-stat small{font-size:10px;color:rgba(255,255,255,.35);font-weight:500}
 
 .cta{padding:80px 0;background:var(--navy);text-align:center;position:relative}
 .cta::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
@@ -494,7 +515,12 @@ a{color:inherit;text-decoration:none}
   </div>
 </div></section>
 
-<section class="ilinks"><div class="w"><div class="il-grid">
+<section class="ilinks"><div class="w">
+  <div class="il-head">
+    <h2>Utforsk bilforsikring <span>over hele Norge</span></h2>
+    <p>Sammenlign priser i din by, ditt fylke eller hos ditt foretrukne selskap.</p>
+  </div>
+  <div class="il-grid">
   <div class="il-col">
     <h3>Forsikringsselskaper</h3>
     <a href="/forsikringsselskaper/gjensidige">Gjensidige bilforsikring</a>
@@ -505,39 +531,49 @@ a{color:inherit;text-decoration:none}
     <a href="/forsikringsselskaper/frende">Frende bilforsikring</a>
     <a href="/forsikringsselskaper/eika">Eika bilforsikring</a>
     <a href="/ordliste/">Ordliste bilforsikring</a>
-    <a href="/forsikringsselskaper/">Se alle 22 selskaper</a>
+    <a href="/forsikringsselskaper/" class="il-cta">Se alle 22 selskaper <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <div class="il-stat">
+      <div><b>22</b><small>Selskaper</small></div>
+      <div><b>75</b><small>Agenter</small></div>
+      <div><b>16</b><small>Byer</small></div>
+    </div>
   </div>
-  <div class="il-col">
-    <h3>Etter by</h3>
-    <a href="/oslo">Bilforsikring Oslo</a>
-    <a href="/bergen">Bilforsikring Bergen</a>
-    <a href="/trondheim">Bilforsikring Trondheim</a>
-    <a href="/stavanger">Bilforsikring Stavanger</a>
-    <a href="/drammen">Bilforsikring Drammen</a>
-    <a href="/tromso">Bilforsikring Tromsø</a>
-    <a href="/kristiansand">Bilforsikring Kristiansand</a>
-    <a href="/fredrikstad">Bilforsikring Fredrikstad</a>
-    <a href="/tonsberg">Bilforsikring Tønsberg</a>
-    <a href="/gjovik">Bilforsikring Gjøvik</a>
-    <a href="/bodo">Bilforsikring Bodø</a>
-    <a href="/hamar">Bilforsikring Hamar</a>
-    <a href="/molde">Bilforsikring Molde</a>
-    <a href="/sandefjord">Bilforsikring Sandefjord</a>
-    <a href="/porsgrunn">Bilforsikring Porsgrunn</a>
-    <a href="/alesund">Bilforsikring Ålesund</a>
+  <div class="il-col il-col--cities">
+    <h3>Byer</h3>
+    <div class="il-tags">
+      <a href="/oslo">Oslo</a>
+      <a href="/bergen">Bergen</a>
+      <a href="/trondheim">Trondheim</a>
+      <a href="/stavanger">Stavanger</a>
+      <a href="/drammen">Drammen</a>
+      <a href="/tromso">Tromsø</a>
+      <a href="/kristiansand">Kristiansand</a>
+      <a href="/fredrikstad">Fredrikstad</a>
+      <a href="/tonsberg">Tønsberg</a>
+      <a href="/gjovik">Gjøvik</a>
+      <a href="/bodo">Bodø</a>
+      <a href="/hamar">Hamar</a>
+      <a href="/molde">Molde</a>
+      <a href="/sandefjord">Sandefjord</a>
+      <a href="/porsgrunn">Porsgrunn</a>
+      <a href="/alesund">Ålesund</a>
+    </div>
   </div>
-  <div class="il-col">
-    <h3>Etter fylke</h3>
-    <a href="/akershus">Akershus</a>
-    <a href="/vestland">Vestland</a>
-    <a href="/rogaland">Rogaland</a>
-    <a href="/trondelag">Trøndelag</a>
-    <a href="/nordland">Nordland</a>
-    <a href="/agder">Agder</a>
-    <a href="/innlandet">Innlandet</a>
-    <a href="/ostfold">Østfold</a>
+  <div class="il-col il-col--fylke">
+    <h3>Fylker</h3>
+    <div class="il-tags">
+      <a href="/akershus">Akershus</a>
+      <a href="/vestland">Vestland</a>
+      <a href="/rogaland">Rogaland</a>
+      <a href="/trondelag">Trøndelag</a>
+      <a href="/nordland">Nordland</a>
+      <a href="/agder">Agder</a>
+      <a href="/innlandet">Innlandet</a>
+      <a href="/ostfold">Østfold</a>
+    </div>
   </div>
-</div></div></section>
+</div>
+</div></section>
 
 <section class="cta"><div class="w">
   <h2>Klar til a <span>spare?</span></h2>
