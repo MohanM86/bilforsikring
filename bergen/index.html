@@ -106,6 +106,26 @@ a{color:inherit;text-decoration:none}
 .afor{font-size:12px;color:var(--blue);font-weight:500;white-space:nowrap}
 .aaddr{font-size:12px;color:var(--g400);white-space:nowrap}
 @media(max-width:700px){.arow{grid-template-columns:1fr;gap:4px}.afor,.aaddr{white-space:normal}}
+
+
+.agent-block{margin-top:28px;padding-top:24px;border-top:2px solid var(--g100)}
+.agent-block h3{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.agent-desc{font-size:13px;color:var(--g600);line-height:1.6;margin-bottom:16px}
+.agrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:700px){.agrid{grid-template-columns:1fr}}
+.acard{border:1px solid var(--g100);border-radius:var(--r);padding:14px;transition:.15s}
+.acard:hover{border-color:var(--blue);background:var(--blue-5)}
+.acard-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px;flex-wrap:wrap}
+.acard-name{font-size:13px;font-weight:700;color:var(--navy)}
+.abadge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;white-space:nowrap}
+.ab-agent{background:var(--blue-10);color:var(--blue)}
+.ab-raad{background:rgba(16,185,129,.1);color:var(--green)}
+.acard-addr{font-size:12px;color:var(--g600);margin-bottom:6px}
+.acard-meta{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--g400)}
+.ac-org{font-family:monospace;font-size:10px}
+.ac-ans{font-weight:600;color:var(--g600)}
+.ac-phone{color:var(--blue)}
+.agent-kilde{font-size:11px;color:var(--g400);margin-top:14px;font-style:italic}
 </style>
 </head>
 <body>
@@ -177,15 +197,53 @@ a{color:inherit;text-decoration:none}
 <div class="ocard-addr">Jonsvollsgaten 2</div>
 <div class="ocard-foot"><span class="ocard-phone">55 21 70 00</span><span class="ocard-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
 </a></div>
-  <div class="agent-sec">
-<h3>Lokale forsikringsagenter</h3>
-<p class="agent-note">Agenter registrert hos Finanstilsynet som formidler forsikring på vegne av forsikringsselskaper i Bergen-regionen.</p>
-<div class="agent-list"><div class="arow">
-<div><strong>Nordvest Forsikring AS</strong><span class="atype">Forsikringsagent</span></div>
-<div class="afor">Agent for Tryg</div>
-<div class="aaddr">Molde (regionalt)</div>
-</div></div></div>
-  <p style="font-size:12px;color:var(--g400);margin-top:20px">Kilde: Selskapenes nettsider og Finanstilsynets virksomhetsregister. Kontaktinformasjon kan ha endret seg — sjekk selskapets nettside for oppdatert info.</p>
+  </div></div>
+  
+<p class="dealer-source">Kilde: Finanstilsynets virksomhetsregister, mars 2026.</p>
+</div>
+<div class="agent-block">
+<h3>Forsikringsagenter i Bergen-regionen</h3>
+<p class="agent-desc">Disse forsikringsformidlerne og agentene har kontor i Bergen-regionen. De kan hjelpe deg med å finne riktig bilforsikring fra flere selskaper. Alle er registrert i Brønnøysundregistrene.</p>
+<div class="agrid"><div class="acard">
+<div class="acard-head">
+<strong class="acard-name">SOGN FORSIKRING AS</strong>
+<span class="abadge ab-agent">Forsikringsagent</span>
+</div>
+<div class="acard-addr">Markeveien 1B, 5012 BERGEN</div>
+<div class="acard-meta">
+<span class="ac-org">Org: 991650350</span>
+
+<span class="ac-phone">57 64 85 80</span>
+</div>
+</div>
+<div class="acard">
+<div class="acard-head">
+<strong class="acard-name">SOTRA FORSIKRING AS</strong>
+<span class="abadge ab-agent">Forsikringsagent</span>
+</div>
+<div class="acard-addr">Smålonane 2, 5353 STRAUME</div>
+<div class="acard-meta">
+<span class="ac-org">Org: 926370510</span>
+<span class="ac-ans">5 ansatte</span>
+
+</div>
+</div>
+<div class="acard">
+<div class="acard-head">
+<strong class="acard-name">ASKØY FORSIKRING AS</strong>
+<span class="abadge ab-agent">Forsikringsagent</span>
+</div>
+<div class="acard-addr">Florvågvegen 109, 5305 FLORVÅG</div>
+<div class="acard-meta">
+<span class="ac-org">Org: 927209918</span>
+<span class="ac-ans">6 ansatte</span>
+
+</div>
+</div>
+</div>
+<p class="agent-kilde">Kilde: Brønnøysundregistrene (Enhetsregisteret), mars 2026. NACE-kode 66.220 Forsikringsformidling.</p>
+</div>
+<p style="font-size:12px;color:var(--g400);margin-top:20px">Kilde: Selskapenes nettsider og Finanstilsynets virksomhetsregister. Kontaktinformasjon kan ha endret seg — sjekk selskapets nettside for oppdatert info.</p>
 </div></section>
 
 <section class="sec"><div class="w">
