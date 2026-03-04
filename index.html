@@ -144,6 +144,60 @@ a{color:inherit;text-decoration:none}
 .qa{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;font-size:14px;color:var(--g600);line-height:1.7}
 .qi.open .qa{max-height:180px;padding-bottom:18px}
 
+/* ── COVERAGE COMPARISON ── */
+.cmp{padding:80px 0;background:var(--navy);position:relative;overflow:hidden}
+.cmp::before{content:'';position:absolute;top:0;right:0;width:40%;height:100%;background:radial-gradient(ellipse at 80% 50%,rgba(26,92,255,.08),transparent 70%);pointer-events:none}
+.cmp-top{margin-bottom:36px}
+.cmp-top h2{font-size:28px;font-weight:800;color:var(--white);letter-spacing:-.3px;margin-bottom:8px}
+.cmp-top p{font-size:14px;color:var(--g400)}
+.cmp-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;position:relative;z-index:1}
+.cmp-table th{padding:14px 16px;text-align:left;font-weight:600;color:var(--g400);border-bottom:1px solid rgba(255,255,255,.06);font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+.cmp-table th:not(:first-child){text-align:center}
+.cmp-table td{padding:13px 16px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.7)}
+.cmp-table td:not(:first-child){text-align:center}
+.cmp-table tr:last-child td{border:none}
+.cmp-table .feat{font-weight:500;color:var(--white)}
+.cmp-y{color:var(--green);font-weight:700}
+.cmp-n{color:var(--g600)}
+.cmp-head-best{background:rgba(26,92,255,.15);border-radius:8px 8px 0 0;color:var(--cyan)!important;position:relative}
+.cmp-head-best::before{content:'Populaer';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--blue);color:var(--white);font-size:9px;font-weight:700;padding:2px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px}
+.cmp-col-best{background:rgba(26,92,255,.06)}
+.cmp-price{font-size:12px;color:var(--cyan);font-weight:600;margin-top:2px;display:block}
+@media(max-width:700px){.cmp-table{font-size:11px}.cmp-table th,.cmp-table td{padding:10px 8px}}
+
+/* ── PRICE INDEX ── */
+.pidx{padding:80px 0}
+.pidx-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;gap:16px}
+.pidx-top h2{font-size:28px;font-weight:800;color:var(--navy);letter-spacing:-.3px}
+.pidx-top p{font-size:13px;color:var(--g400);max-width:340px;text-align:right}
+@media(max-width:600px){.pidx-top{flex-direction:column;align-items:flex-start}.pidx-top p{text-align:left}}
+.pidx-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:800px){.pidx-grid{grid-template-columns:1fr}}
+.pidx-card{border:1px solid var(--g100);border-radius:var(--r-lg);padding:24px;position:relative;overflow:hidden}
+.pidx-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.pidx-card:nth-child(1)::before{background:var(--green)}
+.pidx-card:nth-child(2)::before{background:var(--blue)}
+.pidx-card:nth-child(3)::before{background:var(--amber)}
+.pidx-label{font-size:12px;font-weight:600;color:var(--g400);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+.pidx-range{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+.pidx-range b{font-size:28px;font-weight:800;letter-spacing:-1px;color:var(--navy)}
+.pidx-range span{font-size:13px;color:var(--g400)}
+.pidx-bar{height:6px;border-radius:3px;background:var(--g100);overflow:hidden;margin-bottom:12px}
+.pidx-fill{height:100%;border-radius:3px;transition:width 1.5s cubic-bezier(.16,1,.3,1)}
+.pidx-card:nth-child(1) .pidx-fill{background:var(--green);width:35%}
+.pidx-card:nth-child(2) .pidx-fill{background:var(--blue);width:65%}
+.pidx-card:nth-child(3) .pidx-fill{background:var(--amber);width:100%}
+.pidx-note{font-size:12px;color:var(--g400);line-height:1.5}
+
+/* ── LIVE TICKER ── */
+.ticker{padding:12px 0;background:var(--navy-2);border-bottom:1px solid rgba(255,255,255,.04);overflow:hidden}
+.ticker-track{display:flex;gap:48px;animation:tickerScroll 30s linear infinite;white-space:nowrap}
+@keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-item{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--g400)}
+.ticker-item b{color:var(--white);font-weight:600}
+.ticker-dot{width:4px;height:4px;border-radius:50%;background:var(--green);flex-shrink:0}
+.ticker-dot--amber{background:var(--amber)}
+
 .blog{padding:80px 0;background:var(--g50);border-top:1px solid var(--g100)}
 .blog-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;gap:16px}
 .blog-top h2{font-size:28px;font-weight:800;color:var(--navy);letter-spacing:-.3px}
@@ -241,6 +295,25 @@ a{color:inherit;text-decoration:none}
   </div>
 </div></section>
 
+<div class="ticker"><div class="ticker-track" id="ticker">
+  <span class="ticker-item"><span class="ticker-dot"></span>Oslo — Kasko fra <b>4 890 kr/ar</b></span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Bergen — Delkasko fra <b>3 210 kr/ar</b></span>
+  <span class="ticker-item"><span class="ticker-dot ticker-dot--amber"></span>Gjennomsnittspris kasko <b>8 740 kr</b> — ned 3.2 % fra 2025</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Trondheim — Ansvar fra <b>2 980 kr/ar</b></span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Stavanger — Toppkasko fra <b>11 200 kr/ar</b></span>
+  <span class="ticker-item"><span class="ticker-dot ticker-dot--amber"></span>Elbil-forsikring snitt <b>9 850 kr</b> — opp 1.8 % siste kvartal</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Tromsø — Kasko fra <b>5 100 kr/ar</b></span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Drammen — Delkasko fra <b>2 890 kr/ar</b></span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Oslo — Kasko fra <b>4 890 kr/ar</b></span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Bergen — Delkasko fra <b>3 210 kr/ar</b></span>
+  <span class="ticker-item"><span class="ticker-dot ticker-dot--amber"></span>Gjennomsnittspris kasko <b>8 740 kr</b> — ned 3.2 % fra 2025</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Trondheim — Ansvar fra <b>2 980 kr/ar</b></span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Stavanger — Toppkasko fra <b>11 200 kr/ar</b></span>
+  <span class="ticker-item"><span class="ticker-dot ticker-dot--amber"></span>Elbil-forsikring snitt <b>9 850 kr</b> — opp 1.8 % siste kvartal</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Tromsø — Kasko fra <b>5 100 kr/ar</b></span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Drammen — Delkasko fra <b>2 890 kr/ar</b></span>
+</div></div>
+
 <div class="partners"><div class="w">
   <span class="p-label">Sammenligner fra</span>
   <div class="p-logos"><span>Gjensidige</span><span>If</span><span>Tryg</span><span>Fremtind</span><span>Storebrand</span><span>Frende</span><span>Eika</span></div>
@@ -290,6 +363,62 @@ a{color:inherit;text-decoration:none}
       <div class="wc-ico" style="background:var(--blue-10)"><svg viewBox="0 0 24 24" fill="none" stroke="#1A5CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
       <h3>Uforpliktende</h3>
       <p>Motta tilbud og velg selv. Du binder deg aldri til noe.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="cmp" id="sammenlign"><div class="w">
+  <div class="cmp-top">
+    <h2>Sammenlign dekningstyper</h2>
+    <p>Se noyaktig hva hver dekning inkluderer for du velger.</p>
+  </div>
+  <table class="cmp-table">
+    <thead>
+      <tr>
+        <th>Dekning</th>
+        <th>Ansvar</th>
+        <th>Delkasko</th>
+        <th class="cmp-head-best">Kasko</th>
+        <th>Toppkasko</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="feat">Skade pa andre</td><td class="cmp-y">&#10003;</td><td class="cmp-y">&#10003;</td><td class="cmp-y cmp-col-best">&#10003;</td><td class="cmp-y">&#10003;</td></tr>
+      <tr><td class="feat">Brann og tyveri</td><td class="cmp-n">—</td><td class="cmp-y">&#10003;</td><td class="cmp-y cmp-col-best">&#10003;</td><td class="cmp-y">&#10003;</td></tr>
+      <tr><td class="feat">Glass og naturskade</td><td class="cmp-n">—</td><td class="cmp-y">&#10003;</td><td class="cmp-y cmp-col-best">&#10003;</td><td class="cmp-y">&#10003;</td></tr>
+      <tr><td class="feat">Veihjelp</td><td class="cmp-n">—</td><td class="cmp-y">&#10003;</td><td class="cmp-y cmp-col-best">&#10003;</td><td class="cmp-y">&#10003;</td></tr>
+      <tr><td class="feat">Skade pa egen bil</td><td class="cmp-n">—</td><td class="cmp-n">—</td><td class="cmp-y cmp-col-best">&#10003;</td><td class="cmp-y">&#10003;</td></tr>
+      <tr><td class="feat">Parkeringsskade</td><td class="cmp-n">—</td><td class="cmp-n">—</td><td class="cmp-n cmp-col-best">—</td><td class="cmp-y">&#10003;</td></tr>
+      <tr><td class="feat">Maskinskade</td><td class="cmp-n">—</td><td class="cmp-n">—</td><td class="cmp-n cmp-col-best">—</td><td class="cmp-y">&#10003;</td></tr>
+      <tr><td class="feat">Leiebil ved skade</td><td class="cmp-n">—</td><td class="cmp-n">—</td><td class="cmp-n cmp-col-best">—</td><td class="cmp-y">&#10003;</td></tr>
+      <tr><td class="feat">Prisindikasjon</td><td><span class="cmp-price">fra 3 000 kr/ar</span></td><td><span class="cmp-price">fra 4 500 kr/ar</span></td><td class="cmp-col-best"><span class="cmp-price">fra 6 500 kr/ar</span></td><td><span class="cmp-price">fra 9 500 kr/ar</span></td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<section class="pidx"><div class="w">
+  <div class="pidx-top">
+    <h2>Prisindeks 2026</h2>
+    <p>Basert pa over 100 000 sammenligninger. Oppdatert mars 2026.</p>
+  </div>
+  <div class="pidx-grid">
+    <div class="pidx-card">
+      <div class="pidx-label">Ansvar / Delkasko</div>
+      <div class="pidx-range"><b>3 000 – 5 500</b><span>kr/ar</span></div>
+      <div class="pidx-bar"><div class="pidx-fill"></div></div>
+      <div class="pidx-note">Best egnet for biler eldre enn 10 ar med lav markedsverdi. Minimumskrav i Norge.</div>
+    </div>
+    <div class="pidx-card">
+      <div class="pidx-label">Kasko</div>
+      <div class="pidx-range"><b>6 000 – 14 000</b><span>kr/ar</span></div>
+      <div class="pidx-bar"><div class="pidx-fill"></div></div>
+      <div class="pidx-note">Mest populaer. Dekker skader pa egen bil. Lonnsomt nar premie &lt; 10 % av bilens verdi.</div>
+    </div>
+    <div class="pidx-card">
+      <div class="pidx-label">Toppkasko / Elbil</div>
+      <div class="pidx-range"><b>9 500 – 22 000</b><span>kr/ar</span></div>
+      <div class="pidx-bar"><div class="pidx-fill"></div></div>
+      <div class="pidx-note">Inkluderer leiebil, maskinskade og parkeringsskade. For nye biler og elbiler.</div>
     </div>
   </div>
 </div></section>
@@ -421,5 +550,61 @@ a{color:inherit;text-decoration:none}
   <div class="ft-bot"><span>&copy; 2026 bilforsikring.io</span><div><a href="/personvern">Personvern</a><a href="/vilkar">Vilkar</a></div></div>
 </div></footer>
 
+<script>
+// Animated counters for stats strip
+function animateCount(el, target, suffix, duration) {
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) { start = target; clearInterval(timer); }
+    el.textContent = Math.floor(start).toLocaleString('nb-NO') + suffix;
+  }, 16);
+}
+
+// Observe stats strip
+const stripObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const stats = e.target.querySelectorAll('.st b');
+      if (stats[0] && !stats[0].dataset.done) {
+        stats[0].dataset.done = '1';
+        animateCount(stats[0], 4823, '', 1200);
+        setTimeout(() => stats[0].innerHTML = '4 823 <span>kr</span>', 1300);
+      }
+      stripObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+const stripEl = document.querySelector('.strip');
+if (stripEl) stripObs.observe(stripEl);
+
+// Animate price index bars on scroll
+const pidxObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.pidx-fill').forEach((bar, i) => {
+        setTimeout(() => {
+          bar.style.width = bar.parentElement.parentElement.querySelector('.pidx-fill') === bar
+            ? ['35%', '65%', '100%'][i] : bar.style.width;
+        }, i * 200);
+      });
+      pidxObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+const pidxEl = document.querySelector('.pidx-grid');
+if (pidxEl) {
+  pidxEl.querySelectorAll('.pidx-fill').forEach(f => f.style.width = '0%');
+  pidxObs.observe(pidxEl);
+}
+
+// Pause ticker on hover
+const ticker = document.getElementById('ticker');
+if (ticker) {
+  ticker.addEventListener('mouseenter', () => ticker.style.animationPlayState = 'paused');
+  ticker.addEventListener('mouseleave', () => ticker.style.animationPlayState = 'running');
+}
+</script>
 </body>
 </html>
