@@ -2,8 +2,41 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/forsikringsselskaper/:slug", "destination": "/forsikringsselskaper/:slug/index.html" },
-    { "source": "/artikler/:slug", "destination": "/artikler/:slug/index.html" },
-    { "source": "/ordliste", "destination": "/ordliste/index.html" }
+    {
+      "source": "/forsikringsselskaper/:slug",
+      "destination": "/forsikringsselskaper/:slug/index.html"
+    },
+    {
+      "source": "/artikler/:slug",
+      "destination": "/artikler/:slug/index.html"
+    },
+    {
+      "source": "/ordliste",
+      "destination": "/ordliste/index.html"
+    },
+    {
+      "source": "/buskerud",
+      "destination": "/buskerud/index.html"
+    },
+    {
+      "source": "/vestfold",
+      "destination": "/vestfold/index.html"
+    },
+    {
+      "source": "/telemark",
+      "destination": "/telemark/index.html"
+    },
+    {
+      "source": "/more-og-romsdal",
+      "destination": "/more-og-romsdal/index.html"
+    },
+    {
+      "source": "/troms",
+      "destination": "/troms/index.html"
+    },
+    {
+      "source": "/finnmark",
+      "destination": "/finnmark/index.html"
+    }
   ]
 }
