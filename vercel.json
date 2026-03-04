@@ -37,6 +37,10 @@
     {
       "source": "/finnmark",
       "destination": "/finnmark/index.html"
+    },
+    {
+      "source": "/kommuner",
+      "destination": "/kommuner/index.html"
     }
   ]
 }

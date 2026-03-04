@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bilforsikring i alle kommuner — Finn din kommune | Bilforsikring.io</title>
+<meta name="description" content="Sammenlign bilforsikring i alle 357 norske kommuner. Finn din kommune og se priser, agenter og tips. Oppdatert mars 2026.">
+<link rel="canonical" href="https://bilforsikring.io/kommuner">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1A2E;--blue:#1A5CFF;--blue-d:#1450E0;--blue-10:rgba(26,92,255,.1);--blue-5:rgba(26,92,255,.05);--cyan:#00D4FF;--white:#fff;--g50:#F7F8FA;--g100:#EDF0F4;--g200:#D5DAE3;--g400:#8892A4;--g600:#4F5B6E;--g800:#1E2A3A;--green:#10B981;--amber:#F59E0B;--r:10px;--r-lg:16px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',system-ui,sans-serif;color:var(--g800);background:var(--white);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.w{max-width:1140px;margin:0 auto;padding:0 28px}
+
+/* Nav */
+.n{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;background:var(--white);border-bottom:1px solid var(--g100)}
+.n .w{display:flex;align-items:center;height:100%}
+.n-logo{font-size:17px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px;letter-spacing:-.3px}
+.n-logo svg{width:26px;height:26px}
+.n-r{margin-left:auto;display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500;color:var(--g600)}
+.n-r a:hover{color:var(--navy)}
+.n-btn{background:var(--blue);color:var(--white)!important;padding:8px 20px;border-radius:8px;font-weight:600;font-size:13px;transition:.15s}
+.n-btn:hover{background:var(--blue-d)}
+@media(max-width:768px){.n-r a:not(.n-btn){display:none}}
+
+/* Hero */
+.kh{padding:120px 0 60px;text-align:center;background:linear-gradient(180deg,var(--g50) 0%,var(--white) 100%);position:relative}
+.kh::before{content:'';position:absolute;top:64px;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(circle,rgba(26,92,255,.06) 0%,transparent 70%);pointer-events:none}
+.kh h1{font-size:clamp(28px,4vw,44px);font-weight:800;color:var(--navy);letter-spacing:-.5px;margin-bottom:10px}
+.kh h1 span{background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.kh p{font-size:16px;color:var(--g600);max-width:520px;margin:0 auto 32px}
+
+/* Search */
+.search-wrap{max-width:560px;margin:0 auto;position:relative}
+.search-wrap svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--g400);width:20px;height:20px;pointer-events:none}
+.search-input{width:100%;padding:16px 20px 16px 50px;border:2px solid var(--g100);border-radius:12px;font-family:inherit;font-size:15px;font-weight:500;color:var(--g800);background:var(--white);transition:border-color .2s,box-shadow .2s;outline:none}
+.search-input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(26,92,255,.1)}
+.search-input::placeholder{color:var(--g400);font-weight:400}
+.search-count{text-align:center;margin-top:12px;font-size:13px;color:var(--g400)}
+.no-results{text-align:center;padding:40px 20px;color:var(--g400);font-size:15px;display:none}
+
+/* Popular */
+.pop-sec{padding:48px 0 20px}
+.sec-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:20px}
+.sec-title svg{width:22px;height:22px;color:var(--blue)}
+.pk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.pk-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.pk-grid{grid-template-columns:repeat(2,1fr)}}
+.pk-card{display:flex;align-items:flex-start;gap:12px;padding:16px;border:1px solid var(--g100);border-radius:12px;transition:all .2s;cursor:pointer;background:var(--white)}
+.pk-card:hover{border-color:var(--blue);box-shadow:0 4px 20px rgba(26,92,255,.08);transform:translateY(-2px)}
+.pk-icon{width:32px;height:32px;border-radius:8px;background:var(--blue-5);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue)}
+.pk-card:hover .pk-icon{background:var(--blue-10)}
+.pk-info{display:flex;flex-direction:column;gap:1px;min-width:0}
+.pk-info strong{font-size:14px;font-weight:700;color:var(--navy)}
+.pk-fylke{font-size:12px;color:var(--g400)}
+.pk-pop{font-size:11px;color:var(--g400);font-weight:500}
+
+/* Accordion */
+.acc-sec{padding:40px 0 64px}
+.acc{margin-bottom:8px;border:1px solid var(--g100);border-radius:12px;overflow:hidden;transition:border-color .2s}
+.acc:hover{border-color:var(--g200)}
+.acc-head{width:100%;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;background:var(--white);border:none;cursor:pointer;font-family:inherit;transition:background .15s}
+.acc-head:hover{background:var(--g50)}
+.acc-left{display:flex;align-items:center;gap:12px}
+.acc-name{font-size:15px;font-weight:700;color:var(--navy)}
+.acc-count{font-size:12px;color:var(--g400);font-weight:500;background:var(--g50);padding:3px 10px;border-radius:12px}
+.acc-chev{color:var(--g400);transition:transform .25s ease;flex-shrink:0}
+.acc[data-open="true"] .acc-chev{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.acc[data-open="true"] .acc-body{max-height:3000px}
+.acc-head-link{padding:0 22px 12px;font-size:13px}
+.acc-head-link a{color:var(--blue);font-weight:600}
+.acc-head-link a:hover{text-decoration:underline}
+
+/* Kommune items */
+.k-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0 12px 16px}
+@media(max-width:700px){.k-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.k-grid{grid-template-columns:1fr}}
+.k-item{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:6px;transition:background .15s;font-size:13px}
+.k-item:hover{background:var(--g50)}
+.k-name{font-weight:500;color:var(--g800)}
+.k-nr{font-size:10px;color:var(--g400);font-family:monospace;margin-left:auto}
+.k-item--linked{cursor:pointer}
+.k-item--linked:hover{background:var(--blue-5)}
+.k-item--linked .k-name{color:var(--blue);font-weight:600}
+.k-arrow{color:var(--blue);opacity:0;transition:opacity .15s}
+.k-item--linked:hover .k-arrow{opacity:1}
+
+/* Footer */
+.ft{background:var(--navy);padding:56px 0 28px;color:var(--g400);border-top:1px solid rgba(255,255,255,.04)}
+.ft-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+@media(max-width:768px){.ft-grid{grid-template-columns:1fr 1fr;gap:24px}}
+@media(max-width:480px){.ft-grid{grid-template-columns:1fr}}
+.ft-brand{font-size:17px;font-weight:700;color:var(--white);display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.ft-brand svg{width:24px;height:24px}
+.ft-desc{font-size:13px;line-height:1.7;max-width:260px}
+.ft h4{font-size:12px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
+.ft a{display:block;font-size:13px;color:var(--g400);margin-bottom:8px}
+.ft a:hover{color:var(--white)}
+.ft-bot{padding-top:20px;border-top:1px solid rgba(255,255,255,.05);font-size:12px;display:flex;justify-content:space-between;align-items:center}
+.ft-bot a{display:inline;margin-left:16px}
+
+/* Banner */
+.banner{padding:64px 0;background:linear-gradient(135deg,var(--blue),#3D7AFF);text-align:center;position:relative;overflow:hidden}
+.banner::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(0,212,255,.15),transparent);border-radius:50%}
+.banner h2{font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--white);margin-bottom:10px;position:relative}
+.banner h2 span{color:var(--cyan)}
+.banner p{font-size:15px;color:rgba(255,255,255,.7);margin-bottom:28px;position:relative}
+.banner a{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--white);color:var(--blue);border-radius:8px;font-weight:700;font-size:15px;transition:all .2s;position:relative}
+.banner a:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.banner a svg{width:16px;height:16px}
+
+/* Utility */
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<nav class="n"><div class="w">
+  <a href="/" class="n-logo"><svg viewBox="0 0 26 26" fill="none"><rect x="1" y="5" width="10" height="16" rx="2.5" fill="#1A5CFF"/><path d="M14 8h7a2.5 2.5 0 012.5 2.5v5A2.5 2.5 0 0121 18h-7" stroke="#00D4FF" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="13" r="2" fill="#fff"/></svg>bilforsikring.io</a>
+  <div class="n-r">
+    <a href="/">Hjem</a>
+    <a href="/forsikringsselskaper/">Selskaper</a>
+    <a href="/artikler/">Artikler</a>
+    <a href="/ordliste/">Ordliste</a>
+    <a href="/#skjema" class="n-btn">Sammenlign priser</a>
+  </div>
+</div></nav>
+
+<section class="kh">
+  <div class="w">
+    <h1>Bilforsikring i <span>hele Norge</span></h1>
+    <p>Finn din kommune blant alle 357 norske kommuner. Sammenlign priser og se lokale forsikringsagenter.</p>
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" class="search-input" id="ksearch" placeholder="Søk etter kommune ..." autocomplete="off">
+    </div>
+    <div class="search-count" id="scount">357 kommuner i 15 fylker</div>
+    <div class="no-results" id="noresults">Ingen kommuner funnet. Prøv et annet søk.</div>
+  </div>
+</section>
+
+<section class="pop-sec" id="popular">
+  <div class="w">
+    <div class="sec-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      Populære kommuner
+    </div>
+    <div class="pk-grid"><a href="/oslo" class="pk-card" data-kommune="oslo">
+  <div class="pk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+  <div class="pk-info">
+    <strong>Oslo</strong>
+    <span class="pk-fylke">Oslo</span>
+    <span class="pk-pop">709 037 innbyggere</span>
+  </div>
+</a>
+<a href="/bergen" class="pk-card" data-kommune="bergen">
+  <div class="pk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+  <div class="pk-info">
+    <strong>Bergen</strong>
+    <span class="pk-fylke">Vestland</span>
+    <span class="pk-pop">289 330 innbyggere</span>
+  </div>
+</a>
+<a href="/trondheim" class="pk-card" data-kommune="trondheim">
+  <div class="pk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+  <div class="pk-info">
+    <strong>Trondheim</strong>
+    <span class="pk-fylke">Trøndelag</span>
+    <span class="pk-pop">212 660 innbyggere</span>
+  </div>
+</a>
+<a href="/stavanger" class="pk-card" data-kommune="stavanger">
+  <div class="pk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+  <div class="pk-info">
+    <strong>Stavanger</strong>
+    <span class="pk-fylke">Rogaland</span>
+    <span class="pk-pop">144 147 innbyggere</span>
+  </div>
+</a>
+<div class="pk-card" data-kommune="bærum">
+  <div class="pk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+  <div class="pk-info">
+    <strong>Bærum</strong>
+    <span class="pk-fylke">Akershus</span>
+    <span class="pk-pop">128 912 innbyggere</span>
+  </div>
+</div>
+<a href="/kristiansand" class="pk-card" data-kommune="kristiansand">
+  <div class="pk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+  <div class="pk-info">
+    <strong>Kristiansand</strong>
+    <span class="pk-fylke">Agder</span>
+    <span class="pk-pop">113 234 innbyggere</span>
+  </div>
+</a>
+<a href="/drammen" class="pk-card" data-kommune="drammen">
+  <div class="pk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+  <div class="pk-info">
+    <strong>Drammen</strong>
+    <span class="pk-fylke">Buskerud</span>
+    <span class="pk-pop">101 567 innbyggere</span>
+  </div>
+</a>
+<div class="pk-card" data-kommune="asker">
+  <div class="pk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+  <div class="pk-info">
+    <strong>Asker</strong>
+    <span class="pk-fylke">Akershus</span>
+    <span class="pk-pop">94 234 innbyggere</span>
+  </div>
+</div>
+<div class="pk-card" data-kommune="lillestrøm">
+  <div class="pk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+  <div class="pk-info">
+    <strong>Lillestrøm</strong>
+    <span class="pk-fylke">Akershus</span>
+    <span class="pk-pop">88 234 innbyggere</span>
+  </div>
+</div>
+<a href="/fredrikstad" class="pk-card" data-kommune="fredrikstad">
+  <div class="pk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+  <div class="pk-info">
+    <strong>Fredrikstad</strong>
+    <span class="pk-fylke">Østfold</span>
+    <span class="pk-pop">83 456 innbyggere</span>
+  </div>
+</a>
+<div class="pk-card" data-kommune="sandnes">
+  <div class="pk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+  <div class="pk-info">
+    <strong>Sandnes</strong>
+    <span class="pk-fylke">Rogaland</span>
+    <span class="pk-pop">83 382 innbyggere</span>
+  </div>
+</div>
+<a href="/tromso" class="pk-card" data-kommune="tromsø">
+  <div class="pk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+  <div class="pk-info">
+    <strong>Tromsø</strong>
+    <span class="pk-fylke">Troms</span>
+    <span class="pk-pop">77 544 innbyggere</span>
+  </div>
+</a>
+</div>
+  </div>
+</section>
+
+<section class="acc-sec" id="allkommuner">
+  <div class="w">
+    <div class="sec-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      Alle kommuner etter fylke
+    </div>
+    <div class="acc" data-fylke="agder">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Agder</strong>
+      <span class="acc-count">25 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/agder">Se fylkesside for Agder &rarr;</a></div>
+    <div class="k-grid"><div class="k-item" data-kommune="arendal"><span class="k-name">Arendal</span><span class="k-nr">4203</span></div>
+<div class="k-item" data-kommune="birkenes"><span class="k-name">Birkenes</span><span class="k-nr">4216</span></div>
+<div class="k-item" data-kommune="bygland"><span class="k-name">Bygland</span><span class="k-nr">4220</span></div>
+<div class="k-item" data-kommune="bykle"><span class="k-name">Bykle</span><span class="k-nr">4222</span></div>
+<div class="k-item" data-kommune="evje og hornnes"><span class="k-name">Evje og Hornnes</span><span class="k-nr">4219</span></div>
+<div class="k-item" data-kommune="farsund"><span class="k-name">Farsund</span><span class="k-nr">4206</span></div>
+<div class="k-item" data-kommune="flekkefjord"><span class="k-name">Flekkefjord</span><span class="k-nr">4207</span></div>
+<div class="k-item" data-kommune="froland"><span class="k-name">Froland</span><span class="k-nr">4214</span></div>
+<div class="k-item" data-kommune="gjerstad"><span class="k-name">Gjerstad</span><span class="k-nr">4211</span></div>
+<div class="k-item" data-kommune="grimstad"><span class="k-name">Grimstad</span><span class="k-nr">4202</span></div>
+<div class="k-item" data-kommune="hægebostad"><span class="k-name">Hægebostad</span><span class="k-nr">4226</span></div>
+<div class="k-item" data-kommune="iveland"><span class="k-name">Iveland</span><span class="k-nr">4218</span></div>
+<a href="/kristiansand" class="k-item k-item--linked" data-kommune="kristiansand"><span class="k-name">Kristiansand</span><span class="k-nr">4204</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+<div class="k-item" data-kommune="kvinesdal"><span class="k-name">Kvinesdal</span><span class="k-nr">4227</span></div>
+<div class="k-item" data-kommune="lillesand"><span class="k-name">Lillesand</span><span class="k-nr">4215</span></div>
+<div class="k-item" data-kommune="lindesnes"><span class="k-name">Lindesnes</span><span class="k-nr">4205</span></div>
+<div class="k-item" data-kommune="lyngdal"><span class="k-name">Lyngdal</span><span class="k-nr">4225</span></div>
+<div class="k-item" data-kommune="risør"><span class="k-name">Risør</span><span class="k-nr">4201</span></div>
+<div class="k-item" data-kommune="sirdal"><span class="k-name">Sirdal</span><span class="k-nr">4228</span></div>
+<div class="k-item" data-kommune="tvedestrand"><span class="k-name">Tvedestrand</span><span class="k-nr">4213</span></div>
+<div class="k-item" data-kommune="valle"><span class="k-name">Valle</span><span class="k-nr">4221</span></div>
+<div class="k-item" data-kommune="vegårshei"><span class="k-name">Vegårshei</span><span class="k-nr">4212</span></div>
+<div class="k-item" data-kommune="vennesla"><span class="k-name">Vennesla</span><span class="k-nr">4223</span></div>
+<div class="k-item" data-kommune="åmli"><span class="k-name">Åmli</span><span class="k-nr">4217</span></div>
+<div class="k-item" data-kommune="åseral"><span class="k-name">Åseral</span><span class="k-nr">4224</span></div>
+</div>
+  </div>
+</div>
+<div class="acc" data-fylke="akershus">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Akershus</strong>
+      <span class="acc-count">21 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/akershus">Se fylkesside for Akershus &rarr;</a></div>
+    <div class="k-grid"><div class="k-item" data-kommune="asker"><span class="k-name">Asker</span><span class="k-nr">3203</span></div>
+<div class="k-item" data-kommune="aurskog-høland"><span class="k-name">Aurskog-Høland</span><span class="k-nr">3226</span></div>
+<div class="k-item" data-kommune="bærum"><span class="k-name">Bærum</span><span class="k-nr">3201</span></div>
+<div class="k-item" data-kommune="eidsvoll"><span class="k-name">Eidsvoll</span><span class="k-nr">3240</span></div>
+<div class="k-item" data-kommune="enebakk"><span class="k-name">Enebakk</span><span class="k-nr">3220</span></div>
+<div class="k-item" data-kommune="frogn"><span class="k-name">Frogn</span><span class="k-nr">3214</span></div>
+<div class="k-item" data-kommune="gjerdrum"><span class="k-name">Gjerdrum</span><span class="k-nr">3230</span></div>
+<div class="k-item" data-kommune="hurdal"><span class="k-name">Hurdal</span><span class="k-nr">3242</span></div>
+<div class="k-item" data-kommune="jevnaker"><span class="k-name">Jevnaker</span><span class="k-nr">3236</span></div>
+<div class="k-item" data-kommune="lillestrøm"><span class="k-name">Lillestrøm</span><span class="k-nr">3205</span></div>
+<div class="k-item" data-kommune="lunner"><span class="k-name">Lunner</span><span class="k-nr">3234</span></div>
+<div class="k-item" data-kommune="lørenskog"><span class="k-name">Lørenskog</span><span class="k-nr">3222</span></div>
+<div class="k-item" data-kommune="nannestad"><span class="k-name">Nannestad</span><span class="k-nr">3238</span></div>
+<div class="k-item" data-kommune="nes"><span class="k-name">Nes</span><span class="k-nr">3228</span></div>
+<div class="k-item" data-kommune="nesodden"><span class="k-name">Nesodden</span><span class="k-nr">3212</span></div>
+<div class="k-item" data-kommune="nittedal"><span class="k-name">Nittedal</span><span class="k-nr">3232</span></div>
+<div class="k-item" data-kommune="nordre follo"><span class="k-name">Nordre Follo</span><span class="k-nr">3207</span></div>
+<div class="k-item" data-kommune="rælingen"><span class="k-name">Rælingen</span><span class="k-nr">3224</span></div>
+<div class="k-item" data-kommune="ullensaker"><span class="k-name">Ullensaker</span><span class="k-nr">3209</span></div>
+<div class="k-item" data-kommune="vestby"><span class="k-name">Vestby</span><span class="k-nr">3216</span></div>
+<div class="k-item" data-kommune="ås"><span class="k-name">Ås</span><span class="k-nr">3218</span></div>
+</div>
+  </div>
+</div>
+<div class="acc" data-fylke="buskerud">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Buskerud</strong>
+      <span class="acc-count">18 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/buskerud">Se fylkesside for Buskerud &rarr;</a></div>
+    <div class="k-grid"><a href="/drammen" class="k-item k-item--linked" data-kommune="drammen"><span class="k-name">Drammen</span><span class="k-nr">3301</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+<div class="k-item" data-kommune="flesberg"><span class="k-name">Flesberg</span><span class="k-nr">3334</span></div>
+<div class="k-item" data-kommune="flå"><span class="k-name">Flå</span><span class="k-nr">3320</span></div>
+<div class="k-item" data-kommune="gol"><span class="k-name">Gol</span><span class="k-nr">3324</span></div>
+<div class="k-item" data-kommune="hemsedal"><span class="k-name">Hemsedal</span><span class="k-nr">3326</span></div>
+<div class="k-item" data-kommune="hol"><span class="k-name">Hol</span><span class="k-nr">3330</span></div>
+<div class="k-item" data-kommune="hole"><span class="k-name">Hole</span><span class="k-nr">3310</span></div>
+<div class="k-item" data-kommune="kongsberg"><span class="k-name">Kongsberg</span><span class="k-nr">3303</span></div>
+<div class="k-item" data-kommune="krødsherad"><span class="k-name">Krødsherad</span><span class="k-nr">3318</span></div>
+<div class="k-item" data-kommune="lier"><span class="k-name">Lier</span><span class="k-nr">3312</span></div>
+<div class="k-item" data-kommune="modum"><span class="k-name">Modum</span><span class="k-nr">3316</span></div>
+<div class="k-item" data-kommune="nesbyen"><span class="k-name">Nesbyen</span><span class="k-nr">3322</span></div>
+<div class="k-item" data-kommune="nore og uvdal"><span class="k-name">Nore og Uvdal</span><span class="k-nr">3338</span></div>
+<div class="k-item" data-kommune="ringerike"><span class="k-name">Ringerike</span><span class="k-nr">3305</span></div>
+<div class="k-item" data-kommune="rollag"><span class="k-name">Rollag</span><span class="k-nr">3336</span></div>
+<div class="k-item" data-kommune="sigdal"><span class="k-name">Sigdal</span><span class="k-nr">3332</span></div>
+<div class="k-item" data-kommune="ål"><span class="k-name">Ål</span><span class="k-nr">3328</span></div>
+<div class="k-item" data-kommune="øvre eiker"><span class="k-name">Øvre Eiker</span><span class="k-nr">3314</span></div>
+</div>
+  </div>
+</div>
+<div class="acc" data-fylke="finnmark">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Finnmark</strong>
+      <span class="acc-count">18 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/finnmark">Se fylkesside for Finnmark &rarr;</a></div>
+    <div class="k-grid"><div class="k-item" data-kommune="alta"><span class="k-name">Alta</span><span class="k-nr">5601</span></div>
+<div class="k-item" data-kommune="berlevåg"><span class="k-name">Berlevåg</span><span class="k-nr">5630</span></div>
+<div class="k-item" data-kommune="båtsfjord"><span class="k-name">Båtsfjord</span><span class="k-nr">5632</span></div>
+<div class="k-item" data-kommune="gamvik"><span class="k-name">Gamvik</span><span class="k-nr">5626</span></div>
+<div class="k-item" data-kommune="hammerfest"><span class="k-name">Hammerfest</span><span class="k-nr">5603</span></div>
+<div class="k-item" data-kommune="hasvik"><span class="k-name">Hasvik</span><span class="k-nr">5616</span></div>
+<div class="k-item" data-kommune="karasjok"><span class="k-name">Karasjok</span><span class="k-nr">5610</span></div>
+<div class="k-item" data-kommune="kautokeino"><span class="k-name">Kautokeino</span><span class="k-nr">5612</span></div>
+<div class="k-item" data-kommune="lebesby"><span class="k-name">Lebesby</span><span class="k-nr">5624</span></div>
+<div class="k-item" data-kommune="loppa"><span class="k-name">Loppa</span><span class="k-nr">5614</span></div>
+<div class="k-item" data-kommune="måsøy"><span class="k-name">Måsøy</span><span class="k-nr">5618</span></div>
+<div class="k-item" data-kommune="nesseby"><span class="k-name">Nesseby</span><span class="k-nr">5636</span></div>
+<div class="k-item" data-kommune="nordkapp"><span class="k-name">Nordkapp</span><span class="k-nr">5620</span></div>
+<div class="k-item" data-kommune="porsanger"><span class="k-name">Porsanger</span><span class="k-nr">5622</span></div>
+<div class="k-item" data-kommune="sør-varanger"><span class="k-name">Sør-Varanger</span><span class="k-nr">5605</span></div>
+<div class="k-item" data-kommune="tana"><span class="k-name">Tana</span><span class="k-nr">5628</span></div>
+<div class="k-item" data-kommune="vadsø"><span class="k-name">Vadsø</span><span class="k-nr">5607</span></div>
+<div class="k-item" data-kommune="vardø"><span class="k-name">Vardø</span><span class="k-nr">5634</span></div>
+</div>
+  </div>
+</div>
+<div class="acc" data-fylke="innlandet">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Innlandet</strong>
+      <span class="acc-count">46 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/innlandet">Se fylkesside for Innlandet &rarr;</a></div>
+    <div class="k-grid"><div class="k-item" data-kommune="alvdal"><span class="k-name">Alvdal</span><span class="k-nr">3428</span></div>
+<div class="k-item" data-kommune="dovre"><span class="k-name">Dovre</span><span class="k-nr">3431</span></div>
+<div class="k-item" data-kommune="eidskog"><span class="k-name">Eidskog</span><span class="k-nr">3416</span></div>
+<div class="k-item" data-kommune="elverum"><span class="k-name">Elverum</span><span class="k-nr">3420</span></div>
+<div class="k-item" data-kommune="engerdal"><span class="k-name">Engerdal</span><span class="k-nr">3425</span></div>
+<div class="k-item" data-kommune="etnedal"><span class="k-name">Etnedal</span><span class="k-nr">3450</span></div>
+<div class="k-item" data-kommune="folldal"><span class="k-name">Folldal</span><span class="k-nr">3429</span></div>
+<div class="k-item" data-kommune="gausdal"><span class="k-name">Gausdal</span><span class="k-nr">3441</span></div>
+<a href="/gjovik" class="k-item k-item--linked" data-kommune="gjøvik"><span class="k-name">Gjøvik</span><span class="k-nr">3407</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+<div class="k-item" data-kommune="gran"><span class="k-name">Gran</span><span class="k-nr">3446</span></div>
+<div class="k-item" data-kommune="grue"><span class="k-name">Grue</span><span class="k-nr">3417</span></div>
+<a href="/hamar" class="k-item k-item--linked" data-kommune="hamar"><span class="k-name">Hamar</span><span class="k-nr">3403</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+<div class="k-item" data-kommune="kongsvinger"><span class="k-name">Kongsvinger</span><span class="k-nr">3401</span></div>
+<div class="k-item" data-kommune="lesja"><span class="k-name">Lesja</span><span class="k-nr">3432</span></div>
+<div class="k-item" data-kommune="lillehammer"><span class="k-name">Lillehammer</span><span class="k-nr">3405</span></div>
+<div class="k-item" data-kommune="lom"><span class="k-name">Lom</span><span class="k-nr">3434</span></div>
+<div class="k-item" data-kommune="løten"><span class="k-name">Løten</span><span class="k-nr">3412</span></div>
+<div class="k-item" data-kommune="nord-aurdal"><span class="k-name">Nord-Aurdal</span><span class="k-nr">3451</span></div>
+<div class="k-item" data-kommune="nord-fron"><span class="k-name">Nord-Fron</span><span class="k-nr">3436</span></div>
+<div class="k-item" data-kommune="nord-odal"><span class="k-name">Nord-Odal</span><span class="k-nr">3414</span></div>
+<div class="k-item" data-kommune="nordre land"><span class="k-name">Nordre Land</span><span class="k-nr">3448</span></div>
+<div class="k-item" data-kommune="os"><span class="k-name">Os</span><span class="k-nr">3430</span></div>
+<div class="k-item" data-kommune="rendalen"><span class="k-name">Rendalen</span><span class="k-nr">3424</span></div>
+<div class="k-item" data-kommune="ringebu"><span class="k-name">Ringebu</span><span class="k-nr">3439</span></div>
+<div class="k-item" data-kommune="ringsaker"><span class="k-name">Ringsaker</span><span class="k-nr">3411</span></div>
+<div class="k-item" data-kommune="sel"><span class="k-name">Sel</span><span class="k-nr">3437</span></div>
+<div class="k-item" data-kommune="skjåk"><span class="k-name">Skjåk</span><span class="k-nr">3433</span></div>
+<div class="k-item" data-kommune="stange"><span class="k-name">Stange</span><span class="k-nr">3413</span></div>
+<div class="k-item" data-kommune="stor-elvdal"><span class="k-name">Stor-Elvdal</span><span class="k-nr">3423</span></div>
+<div class="k-item" data-kommune="søndre land"><span class="k-name">Søndre Land</span><span class="k-nr">3447</span></div>
+<div class="k-item" data-kommune="sør-aurdal"><span class="k-name">Sør-Aurdal</span><span class="k-nr">3449</span></div>
+<div class="k-item" data-kommune="sør-fron"><span class="k-name">Sør-Fron</span><span class="k-nr">3438</span></div>
+<div class="k-item" data-kommune="sør-odal"><span class="k-name">Sør-Odal</span><span class="k-nr">3415</span></div>
+<div class="k-item" data-kommune="tolga"><span class="k-name">Tolga</span><span class="k-nr">3426</span></div>
+<div class="k-item" data-kommune="trysil"><span class="k-name">Trysil</span><span class="k-nr">3421</span></div>
+<div class="k-item" data-kommune="tynset"><span class="k-name">Tynset</span><span class="k-nr">3427</span></div>
+<div class="k-item" data-kommune="vang"><span class="k-name">Vang</span><span class="k-nr">3454</span></div>
+<div class="k-item" data-kommune="vestre slidre"><span class="k-name">Vestre Slidre</span><span class="k-nr">3452</span></div>
+<div class="k-item" data-kommune="vestre toten"><span class="k-name">Vestre Toten</span><span class="k-nr">3443</span></div>
+<div class="k-item" data-kommune="vågå"><span class="k-name">Vågå</span><span class="k-nr">3435</span></div>
+<div class="k-item" data-kommune="våler"><span class="k-name">Våler</span><span class="k-nr">3419</span></div>
+<div class="k-item" data-kommune="åmot"><span class="k-name">Åmot</span><span class="k-nr">3422</span></div>
+<div class="k-item" data-kommune="åsnes"><span class="k-name">Åsnes</span><span class="k-nr">3418</span></div>
+<div class="k-item" data-kommune="østre toten"><span class="k-name">Østre Toten</span><span class="k-nr">3442</span></div>
+<div class="k-item" data-kommune="øyer"><span class="k-name">Øyer</span><span class="k-nr">3440</span></div>
+<div class="k-item" data-kommune="øystre slidre"><span class="k-name">Øystre Slidre</span><span class="k-nr">3453</span></div>
+</div>
+  </div>
+</div>
+<div class="acc" data-fylke="møre og romsdal">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Møre og Romsdal</strong>
+      <span class="acc-count">27 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/more-og-romsdal">Se fylkesside for Møre og Romsdal &rarr;</a></div>
+    <div class="k-grid"><div class="k-item" data-kommune="aukra"><span class="k-name">Aukra</span><span class="k-nr">1547</span></div>
+<div class="k-item" data-kommune="aure"><span class="k-name">Aure</span><span class="k-nr">1576</span></div>
+<div class="k-item" data-kommune="averøy"><span class="k-name">Averøy</span><span class="k-nr">1554</span></div>
+<div class="k-item" data-kommune="fjord"><span class="k-name">Fjord</span><span class="k-nr">1578</span></div>
+<div class="k-item" data-kommune="giske"><span class="k-name">Giske</span><span class="k-nr">1532</span></div>
+<div class="k-item" data-kommune="gjemnes"><span class="k-name">Gjemnes</span><span class="k-nr">1557</span></div>
+<div class="k-item" data-kommune="haram"><span class="k-name">Haram</span><span class="k-nr">1580</span></div>
+<div class="k-item" data-kommune="hareid"><span class="k-name">Hareid</span><span class="k-nr">1517</span></div>
+<div class="k-item" data-kommune="herøy"><span class="k-name">Herøy</span><span class="k-nr">1515</span></div>
+<div class="k-item" data-kommune="hustadvika"><span class="k-name">Hustadvika</span><span class="k-nr">1579</span></div>
+<div class="k-item" data-kommune="kristiansund"><span class="k-name">Kristiansund</span><span class="k-nr">1505</span></div>
+<a href="/molde" class="k-item k-item--linked" data-kommune="molde"><span class="k-name">Molde</span><span class="k-nr">1506</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+<div class="k-item" data-kommune="rauma"><span class="k-name">Rauma</span><span class="k-nr">1539</span></div>
+<div class="k-item" data-kommune="sande"><span class="k-name">Sande</span><span class="k-nr">1514</span></div>
+<div class="k-item" data-kommune="smøla"><span class="k-name">Smøla</span><span class="k-nr">1573</span></div>
+<div class="k-item" data-kommune="stranda"><span class="k-name">Stranda</span><span class="k-nr">1525</span></div>
+<div class="k-item" data-kommune="sula"><span class="k-name">Sula</span><span class="k-nr">1531</span></div>
+<div class="k-item" data-kommune="sunndal"><span class="k-name">Sunndal</span><span class="k-nr">1563</span></div>
+<div class="k-item" data-kommune="surnadal"><span class="k-name">Surnadal</span><span class="k-nr">1566</span></div>
+<div class="k-item" data-kommune="sykkylven"><span class="k-name">Sykkylven</span><span class="k-nr">1528</span></div>
+<div class="k-item" data-kommune="tingvoll"><span class="k-name">Tingvoll</span><span class="k-nr">1560</span></div>
+<div class="k-item" data-kommune="ulstein"><span class="k-name">Ulstein</span><span class="k-nr">1516</span></div>
+<div class="k-item" data-kommune="vanylven"><span class="k-name">Vanylven</span><span class="k-nr">1511</span></div>
+<div class="k-item" data-kommune="vestnes"><span class="k-name">Vestnes</span><span class="k-nr">1535</span></div>
+<div class="k-item" data-kommune="volda"><span class="k-name">Volda</span><span class="k-nr">1577</span></div>
+<a href="/alesund" class="k-item k-item--linked" data-kommune="ålesund"><span class="k-name">Ålesund</span><span class="k-nr">1508</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+<div class="k-item" data-kommune="ørsta"><span class="k-name">Ørsta</span><span class="k-nr">1520</span></div>
+</div>
+  </div>
+</div>
+<div class="acc" data-fylke="nordland">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Nordland</strong>
+      <span class="acc-count">41 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/nordland">Se fylkesside for Nordland &rarr;</a></div>
+    <div class="k-grid"><div class="k-item" data-kommune="alstahaug"><span class="k-name">Alstahaug</span><span class="k-nr">1820</span></div>
+<div class="k-item" data-kommune="andøy"><span class="k-name">Andøy</span><span class="k-nr">1871</span></div>
+<div class="k-item" data-kommune="beiarn"><span class="k-name">Beiarn</span><span class="k-nr">1839</span></div>
+<div class="k-item" data-kommune="bindal"><span class="k-name">Bindal</span><span class="k-nr">1811</span></div>
+<a href="/bodo" class="k-item k-item--linked" data-kommune="bodø"><span class="k-name">Bodø</span><span class="k-nr">1804</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+<div class="k-item" data-kommune="brønnøy"><span class="k-name">Brønnøy</span><span class="k-nr">1813</span></div>
+<div class="k-item" data-kommune="bø"><span class="k-name">Bø</span><span class="k-nr">1867</span></div>
+<div class="k-item" data-kommune="dønna"><span class="k-name">Dønna</span><span class="k-nr">1827</span></div>
+<div class="k-item" data-kommune="evenes"><span class="k-name">Evenes</span><span class="k-nr">1853</span></div>
+<div class="k-item" data-kommune="fauske"><span class="k-name">Fauske</span><span class="k-nr">1841</span></div>
+<div class="k-item" data-kommune="flakstad"><span class="k-name">Flakstad</span><span class="k-nr">1859</span></div>
+<div class="k-item" data-kommune="gildeskål"><span class="k-name">Gildeskål</span><span class="k-nr">1838</span></div>
+<div class="k-item" data-kommune="grane"><span class="k-name">Grane</span><span class="k-nr">1825</span></div>
+<div class="k-item" data-kommune="hadsel"><span class="k-name">Hadsel</span><span class="k-nr">1866</span></div>
+<div class="k-item" data-kommune="hamarøy"><span class="k-name">Hamarøy</span><span class="k-nr">1875</span></div>
+<div class="k-item" data-kommune="hattfjelldal"><span class="k-name">Hattfjelldal</span><span class="k-nr">1826</span></div>
+<div class="k-item" data-kommune="hemnes"><span class="k-name">Hemnes</span><span class="k-nr">1832</span></div>
+<div class="k-item" data-kommune="herøy"><span class="k-name">Herøy</span><span class="k-nr">1818</span></div>
+<div class="k-item" data-kommune="leirfjord"><span class="k-name">Leirfjord</span><span class="k-nr">1822</span></div>
+<div class="k-item" data-kommune="lurøy"><span class="k-name">Lurøy</span><span class="k-nr">1834</span></div>
+<div class="k-item" data-kommune="lødingen"><span class="k-name">Lødingen</span><span class="k-nr">1851</span></div>
+<div class="k-item" data-kommune="meløy"><span class="k-name">Meløy</span><span class="k-nr">1837</span></div>
+<div class="k-item" data-kommune="moskenes"><span class="k-name">Moskenes</span><span class="k-nr">1874</span></div>
+<div class="k-item" data-kommune="narvik"><span class="k-name">Narvik</span><span class="k-nr">1806</span></div>
+<div class="k-item" data-kommune="nesna"><span class="k-name">Nesna</span><span class="k-nr">1828</span></div>
+<div class="k-item" data-kommune="rana"><span class="k-name">Rana</span><span class="k-nr">1833</span></div>
+<div class="k-item" data-kommune="rødøy"><span class="k-name">Rødøy</span><span class="k-nr">1836</span></div>
+<div class="k-item" data-kommune="røst"><span class="k-name">Røst</span><span class="k-nr">1856</span></div>
+<div class="k-item" data-kommune="saltdal"><span class="k-name">Saltdal</span><span class="k-nr">1840</span></div>
+<div class="k-item" data-kommune="sortland"><span class="k-name">Sortland</span><span class="k-nr">1870</span></div>
+<div class="k-item" data-kommune="steigen"><span class="k-name">Steigen</span><span class="k-nr">1848</span></div>
+<div class="k-item" data-kommune="sømna"><span class="k-name">Sømna</span><span class="k-nr">1812</span></div>
+<div class="k-item" data-kommune="sørfold"><span class="k-name">Sørfold</span><span class="k-nr">1845</span></div>
+<div class="k-item" data-kommune="træna"><span class="k-name">Træna</span><span class="k-nr">1835</span></div>
+<div class="k-item" data-kommune="vefsn"><span class="k-name">Vefsn</span><span class="k-nr">1824</span></div>
+<div class="k-item" data-kommune="vega"><span class="k-name">Vega</span><span class="k-nr">1815</span></div>
+<div class="k-item" data-kommune="vestvågøy"><span class="k-name">Vestvågøy</span><span class="k-nr">1860</span></div>
+<div class="k-item" data-kommune="vevelstad"><span class="k-name">Vevelstad</span><span class="k-nr">1816</span></div>
+<div class="k-item" data-kommune="vågan"><span class="k-name">Vågan</span><span class="k-nr">1865</span></div>
+<div class="k-item" data-kommune="værøy"><span class="k-name">Værøy</span><span class="k-nr">1857</span></div>
+<div class="k-item" data-kommune="øksnes"><span class="k-name">Øksnes</span><span class="k-nr">1868</span></div>
+</div>
+  </div>
+</div>
+<div class="acc" data-fylke="oslo">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Oslo</strong>
+      <span class="acc-count">1 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/oslo">Se fylkesside for Oslo &rarr;</a></div>
+    <div class="k-grid"><a href="/oslo" class="k-item k-item--linked" data-kommune="oslo"><span class="k-name">Oslo</span><span class="k-nr">0301</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+</div>
+  </div>
+</div>
+<div class="acc" data-fylke="rogaland">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Rogaland</strong>
+      <span class="acc-count">23 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/rogaland">Se fylkesside for Rogaland &rarr;</a></div>
+    <div class="k-grid"><div class="k-item" data-kommune="bjerkreim"><span class="k-name">Bjerkreim</span><span class="k-nr">1114</span></div>
+<div class="k-item" data-kommune="bokn"><span class="k-name">Bokn</span><span class="k-nr">1145</span></div>
+<div class="k-item" data-kommune="eigersund"><span class="k-name">Eigersund</span><span class="k-nr">1101</span></div>
+<div class="k-item" data-kommune="gjesdal"><span class="k-name">Gjesdal</span><span class="k-nr">1122</span></div>
+<div class="k-item" data-kommune="haugesund"><span class="k-name">Haugesund</span><span class="k-nr">1106</span></div>
+<div class="k-item" data-kommune="hjelmeland"><span class="k-name">Hjelmeland</span><span class="k-nr">1133</span></div>
+<div class="k-item" data-kommune="hå"><span class="k-name">Hå</span><span class="k-nr">1119</span></div>
+<div class="k-item" data-kommune="karmøy"><span class="k-name">Karmøy</span><span class="k-nr">1149</span></div>
+<div class="k-item" data-kommune="klepp"><span class="k-name">Klepp</span><span class="k-nr">1120</span></div>
+<div class="k-item" data-kommune="kvitsøy"><span class="k-name">Kvitsøy</span><span class="k-nr">1144</span></div>
+<div class="k-item" data-kommune="lund"><span class="k-name">Lund</span><span class="k-nr">1112</span></div>
+<div class="k-item" data-kommune="randaberg"><span class="k-name">Randaberg</span><span class="k-nr">1127</span></div>
+<div class="k-item" data-kommune="sandnes"><span class="k-name">Sandnes</span><span class="k-nr">1108</span></div>
+<div class="k-item" data-kommune="sauda"><span class="k-name">Sauda</span><span class="k-nr">1135</span></div>
+<div class="k-item" data-kommune="sokndal"><span class="k-name">Sokndal</span><span class="k-nr">1111</span></div>
+<div class="k-item" data-kommune="sola"><span class="k-name">Sola</span><span class="k-nr">1124</span></div>
+<a href="/stavanger" class="k-item k-item--linked" data-kommune="stavanger"><span class="k-name">Stavanger</span><span class="k-nr">1103</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+<div class="k-item" data-kommune="strand"><span class="k-name">Strand</span><span class="k-nr">1130</span></div>
+<div class="k-item" data-kommune="suldal"><span class="k-name">Suldal</span><span class="k-nr">1134</span></div>
+<div class="k-item" data-kommune="time"><span class="k-name">Time</span><span class="k-nr">1121</span></div>
+<div class="k-item" data-kommune="tysvær"><span class="k-name">Tysvær</span><span class="k-nr">1146</span></div>
+<div class="k-item" data-kommune="utsira"><span class="k-name">Utsira</span><span class="k-nr">1151</span></div>
+<div class="k-item" data-kommune="vindafjord"><span class="k-name">Vindafjord</span><span class="k-nr">1160</span></div>
+</div>
+  </div>
+</div>
+<div class="acc" data-fylke="telemark">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Telemark</strong>
+      <span class="acc-count">17 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/telemark">Se fylkesside for Telemark &rarr;</a></div>
+    <div class="k-grid"><div class="k-item" data-kommune="bamble"><span class="k-name">Bamble</span><span class="k-nr">4012</span></div>
+<div class="k-item" data-kommune="drangedal"><span class="k-name">Drangedal</span><span class="k-nr">4016</span></div>
+<div class="k-item" data-kommune="fyresdal"><span class="k-name">Fyresdal</span><span class="k-nr">4032</span></div>
+<div class="k-item" data-kommune="hjartdal"><span class="k-name">Hjartdal</span><span class="k-nr">4024</span></div>
+<div class="k-item" data-kommune="kragerø"><span class="k-name">Kragerø</span><span class="k-nr">4014</span></div>
+<div class="k-item" data-kommune="kviteseid"><span class="k-name">Kviteseid</span><span class="k-nr">4028</span></div>
+<div class="k-item" data-kommune="midt-telemark"><span class="k-name">Midt-Telemark</span><span class="k-nr">4020</span></div>
+<div class="k-item" data-kommune="nissedal"><span class="k-name">Nissedal</span><span class="k-nr">4030</span></div>
+<div class="k-item" data-kommune="nome"><span class="k-name">Nome</span><span class="k-nr">4018</span></div>
+<div class="k-item" data-kommune="notodden"><span class="k-name">Notodden</span><span class="k-nr">4005</span></div>
+<a href="/porsgrunn" class="k-item k-item--linked" data-kommune="porsgrunn"><span class="k-name">Porsgrunn</span><span class="k-nr">4001</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+<div class="k-item" data-kommune="seljord"><span class="k-name">Seljord</span><span class="k-nr">4022</span></div>
+<div class="k-item" data-kommune="siljan"><span class="k-name">Siljan</span><span class="k-nr">4010</span></div>
+<div class="k-item" data-kommune="skien"><span class="k-name">Skien</span><span class="k-nr">4003</span></div>
+<div class="k-item" data-kommune="tinn"><span class="k-name">Tinn</span><span class="k-nr">4026</span></div>
+<div class="k-item" data-kommune="tokke"><span class="k-name">Tokke</span><span class="k-nr">4034</span></div>
+<div class="k-item" data-kommune="vinje"><span class="k-name">Vinje</span><span class="k-nr">4036</span></div>
+</div>
+  </div>
+</div>
+<div class="acc" data-fylke="troms">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Troms</strong>
+      <span class="acc-count">21 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/troms">Se fylkesside for Troms &rarr;</a></div>
+    <div class="k-grid"><div class="k-item" data-kommune="balsfjord"><span class="k-name">Balsfjord</span><span class="k-nr">5532</span></div>
+<div class="k-item" data-kommune="bardu"><span class="k-name">Bardu</span><span class="k-nr">5520</span></div>
+<div class="k-item" data-kommune="dyrøy"><span class="k-name">Dyrøy</span><span class="k-nr">5528</span></div>
+<div class="k-item" data-kommune="gratangen"><span class="k-name">Gratangen</span><span class="k-nr">5516</span></div>
+<div class="k-item" data-kommune="harstad"><span class="k-name">Harstad</span><span class="k-nr">5503</span></div>
+<div class="k-item" data-kommune="ibestad"><span class="k-name">Ibestad</span><span class="k-nr">5514</span></div>
+<div class="k-item" data-kommune="karlsøy"><span class="k-name">Karlsøy</span><span class="k-nr">5534</span></div>
+<div class="k-item" data-kommune="kvæfjord"><span class="k-name">Kvæfjord</span><span class="k-nr">5510</span></div>
+<div class="k-item" data-kommune="kvænangen"><span class="k-name">Kvænangen</span><span class="k-nr">5546</span></div>
+<div class="k-item" data-kommune="kåfjord"><span class="k-name">Kåfjord</span><span class="k-nr">5540</span></div>
+<div class="k-item" data-kommune="lavangen"><span class="k-name">Lavangen</span><span class="k-nr">5518</span></div>
+<div class="k-item" data-kommune="lyngen"><span class="k-name">Lyngen</span><span class="k-nr">5536</span></div>
+<div class="k-item" data-kommune="målselv"><span class="k-name">Målselv</span><span class="k-nr">5524</span></div>
+<div class="k-item" data-kommune="nordreisa"><span class="k-name">Nordreisa</span><span class="k-nr">5544</span></div>
+<div class="k-item" data-kommune="salangen"><span class="k-name">Salangen</span><span class="k-nr">5522</span></div>
+<div class="k-item" data-kommune="senja"><span class="k-name">Senja</span><span class="k-nr">5530</span></div>
+<div class="k-item" data-kommune="skjervøy"><span class="k-name">Skjervøy</span><span class="k-nr">5542</span></div>
+<div class="k-item" data-kommune="storfjord"><span class="k-name">Storfjord</span><span class="k-nr">5538</span></div>
+<div class="k-item" data-kommune="sørreisa"><span class="k-name">Sørreisa</span><span class="k-nr">5526</span></div>
+<div class="k-item" data-kommune="tjeldsund"><span class="k-name">Tjeldsund</span><span class="k-nr">5512</span></div>
+<a href="/tromso" class="k-item k-item--linked" data-kommune="tromsø"><span class="k-name">Tromsø</span><span class="k-nr">5501</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+</div>
+  </div>
+</div>
+<div class="acc" data-fylke="trøndelag">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Trøndelag</strong>
+      <span class="acc-count">38 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/trondelag">Se fylkesside for Trøndelag &rarr;</a></div>
+    <div class="k-grid"><div class="k-item" data-kommune="flatanger"><span class="k-name">Flatanger</span><span class="k-nr">5049</span></div>
+<div class="k-item" data-kommune="frosta"><span class="k-name">Frosta</span><span class="k-nr">5036</span></div>
+<div class="k-item" data-kommune="frøya"><span class="k-name">Frøya</span><span class="k-nr">5014</span></div>
+<div class="k-item" data-kommune="grong"><span class="k-name">Grong</span><span class="k-nr">5045</span></div>
+<div class="k-item" data-kommune="heim"><span class="k-name">Heim</span><span class="k-nr">5055</span></div>
+<div class="k-item" data-kommune="hitra"><span class="k-name">Hitra</span><span class="k-nr">5056</span></div>
+<div class="k-item" data-kommune="holtålen"><span class="k-name">Holtålen</span><span class="k-nr">5026</span></div>
+<div class="k-item" data-kommune="høylandet"><span class="k-name">Høylandet</span><span class="k-nr">5046</span></div>
+<div class="k-item" data-kommune="inderøy"><span class="k-name">Inderøy</span><span class="k-nr">5053</span></div>
+<div class="k-item" data-kommune="indre fosen"><span class="k-name">Indre Fosen</span><span class="k-nr">5054</span></div>
+<div class="k-item" data-kommune="leka"><span class="k-name">Leka</span><span class="k-nr">5052</span></div>
+<div class="k-item" data-kommune="levanger"><span class="k-name">Levanger</span><span class="k-nr">5037</span></div>
+<div class="k-item" data-kommune="lierne"><span class="k-name">Lierne</span><span class="k-nr">5042</span></div>
+<div class="k-item" data-kommune="malvik"><span class="k-name">Malvik</span><span class="k-nr">5031</span></div>
+<div class="k-item" data-kommune="melhus"><span class="k-name">Melhus</span><span class="k-nr">5028</span></div>
+<div class="k-item" data-kommune="meråker"><span class="k-name">Meråker</span><span class="k-nr">5034</span></div>
+<div class="k-item" data-kommune="midtre gauldal"><span class="k-name">Midtre Gauldal</span><span class="k-nr">5027</span></div>
+<div class="k-item" data-kommune="namsos"><span class="k-name">Namsos</span><span class="k-nr">5007</span></div>
+<div class="k-item" data-kommune="namsskogan"><span class="k-name">Namsskogan</span><span class="k-nr">5044</span></div>
+<div class="k-item" data-kommune="nærøysund"><span class="k-name">Nærøysund</span><span class="k-nr">5060</span></div>
+<div class="k-item" data-kommune="oppdal"><span class="k-name">Oppdal</span><span class="k-nr">5021</span></div>
+<div class="k-item" data-kommune="orkland"><span class="k-name">Orkland</span><span class="k-nr">5059</span></div>
+<div class="k-item" data-kommune="osen"><span class="k-name">Osen</span><span class="k-nr">5020</span></div>
+<div class="k-item" data-kommune="overhalla"><span class="k-name">Overhalla</span><span class="k-nr">5047</span></div>
+<div class="k-item" data-kommune="rennebu"><span class="k-name">Rennebu</span><span class="k-nr">5022</span></div>
+<div class="k-item" data-kommune="rindal"><span class="k-name">Rindal</span><span class="k-nr">5061</span></div>
+<div class="k-item" data-kommune="røros"><span class="k-name">Røros</span><span class="k-nr">5025</span></div>
+<div class="k-item" data-kommune="røyrvik"><span class="k-name">Røyrvik</span><span class="k-nr">5043</span></div>
+<div class="k-item" data-kommune="selbu"><span class="k-name">Selbu</span><span class="k-nr">5032</span></div>
+<div class="k-item" data-kommune="skaun"><span class="k-name">Skaun</span><span class="k-nr">5029</span></div>
+<div class="k-item" data-kommune="snåsa"><span class="k-name">Snåsa</span><span class="k-nr">5041</span></div>
+<div class="k-item" data-kommune="steinkjer"><span class="k-name">Steinkjer</span><span class="k-nr">5006</span></div>
+<div class="k-item" data-kommune="stjørdal"><span class="k-name">Stjørdal</span><span class="k-nr">5035</span></div>
+<a href="/trondheim" class="k-item k-item--linked" data-kommune="trondheim"><span class="k-name">Trondheim</span><span class="k-nr">5001</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+<div class="k-item" data-kommune="tydal"><span class="k-name">Tydal</span><span class="k-nr">5033</span></div>
+<div class="k-item" data-kommune="verdal"><span class="k-name">Verdal</span><span class="k-nr">5038</span></div>
+<div class="k-item" data-kommune="åfjord"><span class="k-name">Åfjord</span><span class="k-nr">5058</span></div>
+<div class="k-item" data-kommune="ørland"><span class="k-name">Ørland</span><span class="k-nr">5057</span></div>
+</div>
+  </div>
+</div>
+<div class="acc" data-fylke="vestfold">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Vestfold</strong>
+      <span class="acc-count">6 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/vestfold">Se fylkesside for Vestfold &rarr;</a></div>
+    <div class="k-grid"><div class="k-item" data-kommune="færder"><span class="k-name">Færder</span><span class="k-nr">3911</span></div>
+<div class="k-item" data-kommune="holmestrand"><span class="k-name">Holmestrand</span><span class="k-nr">3903</span></div>
+<div class="k-item" data-kommune="horten"><span class="k-name">Horten</span><span class="k-nr">3901</span></div>
+<div class="k-item" data-kommune="larvik"><span class="k-name">Larvik</span><span class="k-nr">3909</span></div>
+<a href="/sandefjord" class="k-item k-item--linked" data-kommune="sandefjord"><span class="k-name">Sandefjord</span><span class="k-nr">3907</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+<a href="/tonsberg" class="k-item k-item--linked" data-kommune="tønsberg"><span class="k-name">Tønsberg</span><span class="k-nr">3905</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+</div>
+  </div>
+</div>
+<div class="acc" data-fylke="vestland">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Vestland</strong>
+      <span class="acc-count">43 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/vestland">Se fylkesside for Vestland &rarr;</a></div>
+    <div class="k-grid"><div class="k-item" data-kommune="alver"><span class="k-name">Alver</span><span class="k-nr">4631</span></div>
+<div class="k-item" data-kommune="askvoll"><span class="k-name">Askvoll</span><span class="k-nr">4645</span></div>
+<div class="k-item" data-kommune="askøy"><span class="k-name">Askøy</span><span class="k-nr">4627</span></div>
+<div class="k-item" data-kommune="aurland"><span class="k-name">Aurland</span><span class="k-nr">4641</span></div>
+<div class="k-item" data-kommune="austevoll"><span class="k-name">Austevoll</span><span class="k-nr">4625</span></div>
+<div class="k-item" data-kommune="austrheim"><span class="k-name">Austrheim</span><span class="k-nr">4632</span></div>
+<a href="/bergen" class="k-item k-item--linked" data-kommune="bergen"><span class="k-name">Bergen</span><span class="k-nr">4601</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+<div class="k-item" data-kommune="bjørnafjorden"><span class="k-name">Bjørnafjorden</span><span class="k-nr">4624</span></div>
+<div class="k-item" data-kommune="bremanger"><span class="k-name">Bremanger</span><span class="k-nr">4648</span></div>
+<div class="k-item" data-kommune="bømlo"><span class="k-name">Bømlo</span><span class="k-nr">4613</span></div>
+<div class="k-item" data-kommune="eidfjord"><span class="k-name">Eidfjord</span><span class="k-nr">4619</span></div>
+<div class="k-item" data-kommune="etne"><span class="k-name">Etne</span><span class="k-nr">4611</span></div>
+<div class="k-item" data-kommune="fedje"><span class="k-name">Fedje</span><span class="k-nr">4633</span></div>
+<div class="k-item" data-kommune="fitjar"><span class="k-name">Fitjar</span><span class="k-nr">4615</span></div>
+<div class="k-item" data-kommune="fjaler"><span class="k-name">Fjaler</span><span class="k-nr">4646</span></div>
+<div class="k-item" data-kommune="gloppen"><span class="k-name">Gloppen</span><span class="k-nr">4650</span></div>
+<div class="k-item" data-kommune="gulen"><span class="k-name">Gulen</span><span class="k-nr">4635</span></div>
+<div class="k-item" data-kommune="hyllestad"><span class="k-name">Hyllestad</span><span class="k-nr">4637</span></div>
+<div class="k-item" data-kommune="høyanger"><span class="k-name">Høyanger</span><span class="k-nr">4638</span></div>
+<div class="k-item" data-kommune="kinn"><span class="k-name">Kinn</span><span class="k-nr">4602</span></div>
+<div class="k-item" data-kommune="kvam"><span class="k-name">Kvam</span><span class="k-nr">4622</span></div>
+<div class="k-item" data-kommune="kvinnherad"><span class="k-name">Kvinnherad</span><span class="k-nr">4617</span></div>
+<div class="k-item" data-kommune="luster"><span class="k-name">Luster</span><span class="k-nr">4644</span></div>
+<div class="k-item" data-kommune="lærdal"><span class="k-name">Lærdal</span><span class="k-nr">4642</span></div>
+<div class="k-item" data-kommune="masfjorden"><span class="k-name">Masfjorden</span><span class="k-nr">4634</span></div>
+<div class="k-item" data-kommune="modalen"><span class="k-name">Modalen</span><span class="k-nr">4629</span></div>
+<div class="k-item" data-kommune="osterøy"><span class="k-name">Osterøy</span><span class="k-nr">4630</span></div>
+<div class="k-item" data-kommune="samnanger"><span class="k-name">Samnanger</span><span class="k-nr">4623</span></div>
+<div class="k-item" data-kommune="sogndal"><span class="k-name">Sogndal</span><span class="k-nr">4640</span></div>
+<div class="k-item" data-kommune="solund"><span class="k-name">Solund</span><span class="k-nr">4636</span></div>
+<div class="k-item" data-kommune="stad"><span class="k-name">Stad</span><span class="k-nr">4649</span></div>
+<div class="k-item" data-kommune="stord"><span class="k-name">Stord</span><span class="k-nr">4614</span></div>
+<div class="k-item" data-kommune="stryn"><span class="k-name">Stryn</span><span class="k-nr">4651</span></div>
+<div class="k-item" data-kommune="sunnfjord"><span class="k-name">Sunnfjord</span><span class="k-nr">4647</span></div>
+<div class="k-item" data-kommune="sveio"><span class="k-name">Sveio</span><span class="k-nr">4612</span></div>
+<div class="k-item" data-kommune="tysnes"><span class="k-name">Tysnes</span><span class="k-nr">4616</span></div>
+<div class="k-item" data-kommune="ullensvang"><span class="k-name">Ullensvang</span><span class="k-nr">4618</span></div>
+<div class="k-item" data-kommune="ulvik"><span class="k-name">Ulvik</span><span class="k-nr">4620</span></div>
+<div class="k-item" data-kommune="vaksdal"><span class="k-name">Vaksdal</span><span class="k-nr">4628</span></div>
+<div class="k-item" data-kommune="vik"><span class="k-name">Vik</span><span class="k-nr">4639</span></div>
+<div class="k-item" data-kommune="voss"><span class="k-name">Voss</span><span class="k-nr">4621</span></div>
+<div class="k-item" data-kommune="årdal"><span class="k-name">Årdal</span><span class="k-nr">4643</span></div>
+<div class="k-item" data-kommune="øygarden"><span class="k-name">Øygarden</span><span class="k-nr">4626</span></div>
+</div>
+  </div>
+</div>
+<div class="acc" data-fylke="østfold">
+  <button class="acc-head" aria-expanded="false">
+    <div class="acc-left">
+      <strong class="acc-name">Østfold</strong>
+      <span class="acc-count">12 kommuner</span>
+    </div>
+    <svg class="acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="acc-body">
+    <div class="acc-head-link"><a href="/ostfold">Se fylkesside for Østfold &rarr;</a></div>
+    <div class="k-grid"><div class="k-item" data-kommune="aremark"><span class="k-name">Aremark</span><span class="k-nr">3124</span></div>
+<a href="/fredrikstad" class="k-item k-item--linked" data-kommune="fredrikstad"><span class="k-name">Fredrikstad</span><span class="k-nr">3107</span><span class="k-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+<div class="k-item" data-kommune="halden"><span class="k-name">Halden</span><span class="k-nr">3101</span></div>
+<div class="k-item" data-kommune="hvaler"><span class="k-name">Hvaler</span><span class="k-nr">3110</span></div>
+<div class="k-item" data-kommune="indre østfold"><span class="k-name">Indre Østfold</span><span class="k-nr">3118</span></div>
+<div class="k-item" data-kommune="marker"><span class="k-name">Marker</span><span class="k-nr">3122</span></div>
+<div class="k-item" data-kommune="moss"><span class="k-name">Moss</span><span class="k-nr">3103</span></div>
+<div class="k-item" data-kommune="rakkestad"><span class="k-name">Rakkestad</span><span class="k-nr">3120</span></div>
+<div class="k-item" data-kommune="råde"><span class="k-name">Råde</span><span class="k-nr">3112</span></div>
+<div class="k-item" data-kommune="sarpsborg"><span class="k-name">Sarpsborg</span><span class="k-nr">3105</span></div>
+<div class="k-item" data-kommune="skiptvet"><span class="k-name">Skiptvet</span><span class="k-nr">3116</span></div>
+<div class="k-item" data-kommune="våler"><span class="k-name">Våler</span><span class="k-nr">3114</span></div>
+</div>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<section class="banner">
+  <div class="w">
+    <h2>Sammenlign bilforsikring i <span>din kommune</span></h2>
+    <p>Få tilbud fra opptil 6 selskaper på 30 sekunder. Helt gratis og uforpliktende.</p>
+    <a href="/#skjema">Sammenlign priser <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</section>
+
+<footer class="ft"><div class="w">
+  <div class="ft-grid">
+    <div>
+      <div class="ft-brand"><svg viewBox="0 0 26 26" fill="none"><rect x="1" y="5" width="10" height="16" rx="2.5" fill="#1A5CFF"/><path d="M14 8h7a2.5 2.5 0 012.5 2.5v5A2.5 2.5 0 0121 18h-7" stroke="#00D4FF" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="13" r="2" fill="#fff"/></svg>bilforsikring.io</div>
+      <p class="ft-desc">Norges mest brukte tjeneste for sammenligning av bilforsikring.</p>
+    </div>
+    <div><h4>Tjenester</h4><a href="/#skjema">Sammenlign</a><a href="/forsikringsselskaper/">Selskaper</a><a href="/artikler/">Artikler</a><a href="/ordliste/">Ordliste</a></div>
+    <div><h4>Populære</h4><a href="/forsikringsselskaper/gjensidige">Gjensidige</a><a href="/forsikringsselskaper/if">If</a><a href="/forsikringsselskaper/tryg">Tryg</a><a href="/forsikringsselskaper/fremtind">Fremtind</a></div>
+    <div><h4>Om oss</h4><a href="/om">Om oss</a><a href="/personvern">Personvern</a><a href="/vilkar">Vilkår</a><a href="/kontakt">Kontakt</a></div>
+  </div>
+  <div class="ft-bot"><span>&copy; 2026 bilforsikring.io</span><div><a href="/personvern">Personvern</a><a href="/vilkar">Vilkår</a></div></div>
+</div></footer>
+</body>
+
+<script>
+// Accordion toggle
+document.querySelectorAll('.acc-head').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const acc = btn.closest('.acc');
+    const isOpen = acc.dataset.open === 'true';
+    acc.dataset.open = isOpen ? 'false' : 'true';
+    btn.setAttribute('aria-expanded', !isOpen);
+  });
+});
+
+// Search
+const input = document.getElementById('ksearch');
+const popSec = document.getElementById('popular');
+const scount = document.getElementById('scount');
+const noresults = document.getElementById('noresults');
+const allCards = document.querySelectorAll('.pk-card');
+const allAccs = document.querySelectorAll('.acc');
+const allItems = document.querySelectorAll('.k-item');
+
+input.addEventListener('input', () => {
+  const q = input.value.toLowerCase().trim();
+  
+  if (!q) {
+    // Reset
+    popSec.classList.remove('hidden');
+    noresults.style.display = 'none';
+    scount.textContent = '357 kommuner i 15 fylker';
+    allCards.forEach(c => c.classList.remove('hidden'));
+    allAccs.forEach(a => {
+      a.classList.remove('hidden');
+      a.dataset.open = 'false';
+    });
+    allItems.forEach(i => i.classList.remove('hidden'));
+    return;
+  }
+  
+  // Filter popular cards
+  let popVisible = 0;
+  allCards.forEach(c => {
+    const match = c.dataset.kommune.includes(q);
+    c.classList.toggle('hidden', !match);
+    if (match) popVisible++;
+  });
+  popSec.classList.toggle('hidden', popVisible === 0);
+  
+  // Filter accordion items and auto-open matching
+  let totalVisible = 0;
+  allAccs.forEach(acc => {
+    const items = acc.querySelectorAll('.k-item');
+    let visInAcc = 0;
+    items.forEach(item => {
+      const match = item.dataset.kommune.includes(q);
+      item.classList.toggle('hidden', !match);
+      if (match) visInAcc++;
+    });
+    acc.classList.toggle('hidden', visInAcc === 0);
+    if (visInAcc > 0) {
+      acc.dataset.open = 'true';
+      totalVisible += visInAcc;
+    }
+  });
+  
+  scount.textContent = totalVisible + ' kommuner funnet';
+  noresults.style.display = totalVisible === 0 && popVisible === 0 ? 'block' : 'none';
+});
+</script>
+</body></html>
